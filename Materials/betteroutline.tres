@@ -1,0 +1,9 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://c8886osnfgstx"]
+
+[ext_resource type="Shader" uid="uid://bgo7m8kkajmi3" path="res://Scenes/test/pixelperfectoutline.gdshader" id="1_745rn"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_745rn")
+shader_parameter/outline_color = Color(0, 0, 0, 1)
+shader_parameter/outline_width = 5.0

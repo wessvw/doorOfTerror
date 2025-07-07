@@ -9,14 +9,44 @@ public partial class PlayerMovement : CharacterBody3D
 	Vector3 velocity;
 	public Node3D cameraPivot;
 	public float MouseSensitivity = 0.002f;
-	private StaticBody3D door;
+	private StaticBody3D door;	private Vector3 doorpos;
+	private Player player;
 
 	private float pitch = 0.0f;
+
+	public PlayerMovement()
+	{
+		player = new Player();
+	}
 	public override void _Ready()
 	{
 		Input.MouseMode = Input.MouseModeEnum.Captured;
 		cameraPivot = FindChild("CameraPivot", true, false) as Node3D;
-		door = GetTree().Root.FindChild("door", true, false) as StaticBody3D;
+		door = GetTree().Root.FindChild("doorObject", true, false) as StaticBody3D;
+
+	}
+
+	public override void _Process(double delta)
+	{
+		player.Position = GlobalPosition;
+		// GD.Print(player.Position);
+
+		if (Input.IsActionJustPressed("accept"))
+		{
+			GD.Print(door.GlobalPosition);
+			if (door != null && isPlayerNearDoor())
+			{
+				// door.GetNode<Sprite3D>("eButton").Visible = true;
+			}
+			else
+			{
+				GD.Print("player is not close enough");
+			}
+		}
+		if (Input.IsActionJustPressed("escape"))
+		{
+			Input.MouseMode = Input.MouseModeEnum.Visible;
+		}
 	}
 
 	public override void _PhysicsProcess(double delta)
@@ -45,21 +75,6 @@ public partial class PlayerMovement : CharacterBody3D
 			velocity.X = Mathf.MoveToward(velocity.X, 0, Speed);
 			velocity.Z = Mathf.MoveToward(velocity.Z, 0, Speed);
 		}
-		if (Input.IsActionJustPressed("accept"))
-		{
-			if (door != null && isPlayerNearDoor())
-			{
-				GD.Print("player is near the door");
-			}
-			else
-			{
-				GD.Print("player is not close enough");
-			}
-		}
-		if (Input.IsActionJustPressed("escape"))
-		{
-			Input.MouseMode = Input.MouseModeEnum.Visible;
-		}
 
 
 		Velocity = velocity;
@@ -84,7 +99,7 @@ public partial class PlayerMovement : CharacterBody3D
 		}
 	}
 
-	private bool isPlayerNearDoor()
+	public bool isPlayerNearDoor()
 	{
 		float distance = GlobalPosition.DistanceTo(door.GlobalPosition);
 		return distance <= 5f;

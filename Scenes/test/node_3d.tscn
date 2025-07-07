@@ -1,6 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://m1715odi57up"]
+[gd_scene load_steps=12 format=3 uid="uid://m1715odi57up"]
 
-[ext_resource type="PackedScene" uid="uid://bkhssu84hb8n0" path="res://Objects/player.tscn" id="1_npcsw"]
+[ext_resource type="PackedScene" uid="uid://bkhssu84hb8n0" path="res://Objects/player/player.tscn" id="1_npcsw"]
+[ext_resource type="Script" uid="uid://e55t13mjo3pm" path="res://Scripts/DoorHandler.cs" id="2_ohxyp"]
+[ext_resource type="Texture2D" uid="uid://yrnp0st8bfj2" path="res://icon.svg" id="2_upwws"]
+[ext_resource type="Material" uid="uid://c8886osnfgstx" path="res://Materials/betteroutline.tres" id="3_t24i0"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_upwws"]
 
@@ -9,9 +12,16 @@ size = Vector3(2.19201, 0.0411987, 2.19429)
 
 [sub_resource type="BoxMesh" id="BoxMesh_t24i0"]
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_npcsw"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_t24i0"]
+albedo_color = Color(0.59, 0.386253, 0.1534, 1)
 
 [sub_resource type="BoxMesh" id="BoxMesh_upwws"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_t24i0"]
+size = Vector3(1, 1, 0.712891)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_npcsw"]
+size = Vector3(1, 1, 0.697388)
 
 [node name="Node3D" type="Node3D"]
 
@@ -24,7 +34,7 @@ transform = Transform3D(15, 0, 0, 0, 15, 0, 0, 0, 15, -0.171232, 0.0631261, 0.26
 shape = SubResource("BoxShape3D_ohxyp")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="floor"]
-transform = Transform3D(33, 0, 0, 0, 0.5, 0, 0, 0, 33, -0.140263, 0.0711378, 0.279138)
+transform = Transform3D(33.0261, 0, 0, 0, 0.500395, 0, 0, 0, 33.0261, -0.140263, 0.0711378, 0.279138)
 mesh = SubResource("BoxMesh_t24i0")
 skeleton = NodePath("../CollisionShape3D")
 
@@ -34,11 +44,30 @@ transform = Transform3D(1, 0, 0, 0, -0.0101751, 0.999948, 0, -0.999948, -0.01017
 [node name="Player" parent="." instance=ExtResource("1_npcsw")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.01553, 1.37212, 0.455429)
 
-[node name="door" type="StaticBody3D" parent="."]
+[node name="doorObject" type="StaticBody3D" parent="."]
 transform = Transform3D(4.39909, 0, 0, 0, 7.46394, 0, 0, 0, 1, 0, 3.92819, -16.8193)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="door"]
-shape = SubResource("BoxShape3D_npcsw")
+[node name="handler" type="StaticBody3D" parent="doorObject"]
+transform = Transform3D(1.00218, 0, 0, 0, 1.00218, 0, 0, 0, 1.00218, 0, 0, 0)
+script = ExtResource("2_ohxyp")
+outlineMaterial = ExtResource("3_t24i0")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="door"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="doorObject/handler"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 0.426124, 0, 0, 0)
+material_override = SubResource("StandardMaterial3D_t24i0")
+material_overlay = ExtResource("3_t24i0")
 mesh = SubResource("BoxMesh_upwws")
+skeleton = NodePath("../..")
+
+[node name="eButton" type="Sprite3D" parent="doorObject/handler"]
+transform = Transform3D(0.25, 0, 0, 0, 0.136, 0, 0, 0, 0.25, -0.725935, -0.251918, 0.376114)
+visible = false
+texture = ExtResource("2_upwws")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="doorObject/handler"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 0.999991, 0, 0, -0.143551)
+shape = SubResource("BoxShape3D_t24i0")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="doorObject"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.151306)
+shape = SubResource("BoxShape3D_npcsw")
