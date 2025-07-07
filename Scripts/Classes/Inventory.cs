@@ -1,0 +1,38 @@
+using Godot;
+using System;
+using System.Collections.Generic;
+public class Inventory
+{
+	private Dictionary<string, Item> contents;
+
+
+	public Dictionary<string, Item> Contents
+	{
+		get { return contents; }
+		set { contents = value; }
+	}
+
+	public Inventory()
+	{
+		this.contents = new Dictionary<string, Item>();
+	}
+
+
+	public string PrintInvItems()
+	{
+		string item = "";
+		if (contents.Count == 0)
+		{
+			item = "There are no items in your inventory";
+		}
+		else
+		{
+			foreach (string name in contents.Keys)
+			{
+				item += name + " ";
+				item += ", ";
+			}
+		}
+		return item;
+	}
+}

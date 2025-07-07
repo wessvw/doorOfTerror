@@ -29,7 +29,7 @@ public partial class PlayerMovement : CharacterBody3D
 	public override void _Process(double delta)
 	{
 		player.Position = GlobalPosition;
-		// GD.Print(player.Position);
+		GD.Print(player.Backpack);
 
 		if (Input.IsActionJustPressed("accept"))
 		{
@@ -105,12 +105,23 @@ public partial class PlayerMovement : CharacterBody3D
 		return distance <= 5f;
 	}
 
-	// public void push(float power, float direction)
-	// {
-	// 	velocity.X = velocity.X - Mathf.Cos(direction) * power;
-	// 	velocity.Y = Mathf.Sin(direction) * power;
-	// 	Velocity = velocity;
-	// 	MoveAndSlide();
-	// }
+}
+public partial class Player : Node
+{
+	private int health = 100;
+	private int sanity = 100;
+	private Vector3 position;
+	private Inventory backpack;
 
+
+	public Vector3 Position
+	{
+		get { return position; }
+		set { position = value; }
+	}
+
+	public Inventory Backpack
+	{
+		get { return backpack; }
+	}
 }
