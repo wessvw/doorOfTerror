@@ -24,11 +24,8 @@ transform = Transform3D(33, 0, 0, 0, 0.5, 0, 0, 0, 33, -0.140263, 0.0711378, 0.2
 mesh = SubResource("BoxMesh_t24i0")
 skeleton = NodePath("../CollisionShape3D")
 
-[node name="CharacterBody3D" parent="." instance=ExtResource("1_npcsw")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.522506, 1.0923, 0.1048)
-
-[node name="Camera3D" type="Camera3D" parent="CharacterBody3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0313054, 0.496135, -0.362428)
-
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -0.0101751, 0.999948, 0, -0.999948, -0.0101751, 0, 15.9163, 0)
+
+[node name="Player" parent="." instance=ExtResource("1_npcsw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.01553, 1.37212, 0.455429)
