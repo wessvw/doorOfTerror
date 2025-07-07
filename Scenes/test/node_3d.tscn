@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://m1715odi57up"]
+[gd_scene load_steps=7 format=3 uid="uid://m1715odi57up"]
 
 [ext_resource type="PackedScene" uid="uid://bkhssu84hb8n0" path="res://Objects/player.tscn" id="1_npcsw"]
 
@@ -9,17 +9,21 @@ size = Vector3(2.19201, 0.0411987, 2.19429)
 
 [sub_resource type="BoxMesh" id="BoxMesh_t24i0"]
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_npcsw"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_upwws"]
+
 [node name="Node3D" type="Node3D"]
 
-[node name="StaticBody3D" type="StaticBody3D" parent="."]
+[node name="floor" type="StaticBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.390137, 0, -0.233643)
 physics_material_override = SubResource("PhysicsMaterial_upwws")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="floor"]
 transform = Transform3D(15, 0, 0, 0, 15, 0, 0, 0, 15, -0.171232, 0.0631261, 0.267668)
 shape = SubResource("BoxShape3D_ohxyp")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="floor"]
 transform = Transform3D(33, 0, 0, 0, 0.5, 0, 0, 0, 33, -0.140263, 0.0711378, 0.279138)
 mesh = SubResource("BoxMesh_t24i0")
 skeleton = NodePath("../CollisionShape3D")
@@ -29,3 +33,12 @@ transform = Transform3D(1, 0, 0, 0, -0.0101751, 0.999948, 0, -0.999948, -0.01017
 
 [node name="Player" parent="." instance=ExtResource("1_npcsw")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.01553, 1.37212, 0.455429)
+
+[node name="door" type="StaticBody3D" parent="."]
+transform = Transform3D(4.39909, 0, 0, 0, 7.46394, 0, 0, 0, 1, 0, 3.92819, -16.8193)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="door"]
+shape = SubResource("BoxShape3D_npcsw")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="door"]
+mesh = SubResource("BoxMesh_upwws")
