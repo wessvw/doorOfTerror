@@ -10,13 +10,13 @@ public partial class PlayerMovement : CharacterBody3D
 	public Node3D cameraPivot;
 	public float MouseSensitivity = 0.002f;
 	private StaticBody3D door;	private Vector3 doorpos;
-	private Player player;
+	public Player aplayer;
 
 	private float pitch = 0.0f;
 
 	public PlayerMovement()
 	{
-		player = new Player();
+		aplayer = new Player();
 	}
 	public override void _Ready()
 	{
@@ -28,8 +28,8 @@ public partial class PlayerMovement : CharacterBody3D
 
 	public override void _Process(double delta)
 	{
-		player.Position = GlobalPosition;
-		GD.Print(player.Backpack);
+		aplayer.Position = GlobalPosition;
+		// GD.Print(player.Backpack);
 
 		if (Input.IsActionJustPressed("accept"))
 		{

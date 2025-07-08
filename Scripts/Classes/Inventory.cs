@@ -35,4 +35,21 @@ public class Inventory
 		}
 		return item;
 	}
+
+	public bool Put(string itemName, Item item)
+	{
+		contents.Add(itemName, item);
+		return true;
+	}
+
+	public Item Get(string itemName)
+	{
+		if (contents.ContainsKey(itemName))
+		{
+			Item gottenitem = contents[itemName];
+			contents.Remove(itemName);
+			return gottenitem;
+		}
+		return null;
+	}
 }

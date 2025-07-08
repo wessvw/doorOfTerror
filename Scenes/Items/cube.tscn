@@ -1,0 +1,28 @@
+[gd_scene load_steps=7 format=3 uid="uid://bnw4s7dwqogbv"]
+
+[ext_resource type="Script" uid="uid://dxsmmp6slatk8" path="res://Scripts/ItemScripts/SpawnedItem.cs" id="1_jwxjq"]
+[ext_resource type="Material" uid="uid://c8886osnfgstx" path="res://Materials/betteroutline.tres" id="2_r1brx"]
+[ext_resource type="Texture2D" uid="uid://yrnp0st8bfj2" path="res://icon.svg" id="3_5ygf5"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_e3ljs"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_ya32q"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_fegsc"]
+
+[node name="cube" type="StaticBody3D"]
+transform = Transform3D(0.999998, 0.0018593, -0.00103707, -0.00185927, 0.999998, 3.82096e-05, 0.00103714, -3.6283e-05, 0.999999, 0, 0, 0)
+script = ExtResource("1_jwxjq")
+outlineMaterial = ExtResource("2_r1brx")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+material_override = SubResource("StandardMaterial3D_e3ljs")
+material_overlay = ExtResource("2_r1brx")
+mesh = SubResource("BoxMesh_ya32q")
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.21895, 1.24408, 0)
+texture = ExtResource("3_5ygf5")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_fegsc")

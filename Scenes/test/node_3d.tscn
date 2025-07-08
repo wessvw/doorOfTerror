@@ -1,9 +1,10 @@
-[gd_scene load_steps=12 format=3 uid="uid://m1715odi57up"]
+[gd_scene load_steps=13 format=3 uid="uid://m1715odi57up"]
 
 [ext_resource type="PackedScene" uid="uid://bkhssu84hb8n0" path="res://Objects/player/player.tscn" id="1_npcsw"]
 [ext_resource type="Script" uid="uid://e55t13mjo3pm" path="res://Scripts/DoorHandler.cs" id="2_ohxyp"]
 [ext_resource type="Texture2D" uid="uid://yrnp0st8bfj2" path="res://icon.svg" id="2_upwws"]
 [ext_resource type="Material" uid="uid://c8886osnfgstx" path="res://Materials/betteroutline.tres" id="3_t24i0"]
+[ext_resource type="PackedScene" uid="uid://bnw4s7dwqogbv" path="res://Scenes/Items/cube.tscn" id="5_3jubf"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_upwws"]
 
@@ -71,3 +72,6 @@ shape = SubResource("BoxShape3D_t24i0")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="doorObject"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.151306)
 shape = SubResource("BoxShape3D_npcsw")
+
+[node name="cubeItem" parent="." instance=ExtResource("5_3jubf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.4761, 0.872117, -7.48712)

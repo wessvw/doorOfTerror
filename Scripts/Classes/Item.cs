@@ -9,11 +9,14 @@ public class Item
 	public string IName { get; }
 	public int Price { get; }
 
-	public Item(string iName, string description,int price)
-    {
-        Description = description;
-        IName = iName;
-        Price = price;
-    }
+	public PackedScene Scene;
+
+	public Item(string iName, string description, int price, PackedScene scene)
+	{
+		Scene = scene;
+		Description = description;
+		IName = iName;
+		Price = price;
+	}
 
 }
