@@ -108,6 +108,7 @@ public partial class PlayerMovement : CharacterBody3D
 }
 public partial class Player : Node
 {
+	public Room CurrentRoom { get; set; }
 	private int health = 100;
 	private int sanity = 100;
 	private Vector3 position;
@@ -123,5 +124,14 @@ public partial class Player : Node
 	public Inventory Backpack
 	{
 		get { return backpack; }
+		set { backpack = value; }
 	}
+
+	public Player()
+    {
+        CurrentRoom = null;
+        health = 100;
+        backpack = new Inventory();
+        sanity = 100;
+    }
 }

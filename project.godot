@@ -15,6 +15,10 @@ run/main_scene="uid://m1715odi57up"
 config/features=PackedStringArray("4.4", "C#", "Forward Plus")
 config/icon="res://icon.svg"
 
+[autoload]
+
+Main="*res://Scripts/Main.cs"
+
 [dotnet]
 
 project/assembly_name="Door of terror"
