@@ -44,7 +44,9 @@ public partial class Inventoryui : Control
 
 			if (slots[i] is Invslot slot)
 			{
+				// GD.Print(item.count);
 				slot.UpdateTexture(item);
+				slot.UpdateCount(item);
 			}
 		}
 

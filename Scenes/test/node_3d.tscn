@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://m1715odi57up"]
+[gd_scene load_steps=16 format=3 uid="uid://m1715odi57up"]
 
 [ext_resource type="PackedScene" uid="uid://bkhssu84hb8n0" path="res://Objects/player/player.tscn" id="1_npcsw"]
 [ext_resource type="Script" uid="uid://e55t13mjo3pm" path="res://Scripts/DoorHandler.cs" id="2_ohxyp"]
@@ -6,6 +6,8 @@
 [ext_resource type="Texture2D" uid="uid://hl2nn8o7ee8s" path="res://2D assets/E.png" id="4_1fci8"]
 [ext_resource type="PackedScene" uid="uid://bnw4s7dwqogbv" path="res://Scenes/Items/cube.tscn" id="5_3jubf"]
 [ext_resource type="PackedScene" uid="uid://ch1s0k7ki0mo1" path="res://GUI/inventoryui.tscn" id="6_1fci8"]
+[ext_resource type="Script" uid="uid://doi7chx17aohh" path="res://Scripts/ItemSpawner.cs" id="6_sb7bi"]
+[ext_resource type="Texture2D" uid="uid://bndrqlef183vx" path="res://2D assets/CubeItem.png" id="7_4yhw1"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_upwws"]
 
@@ -75,9 +77,24 @@ shape = SubResource("BoxShape3D_npcsw")
 
 [node name="cubeItem" parent="." instance=ExtResource("5_3jubf")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.4761, 0.872117, -7.48712)
+visible = false
 
 [node name="cubeItem2" parent="." instance=ExtResource("5_3jubf")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.30617, 0.904714, -8.90831)
+visible = false
+
+[node name="ItemSpawner" type="Node3D" parent="."]
+script = ExtResource("6_sb7bi")
+cubeTexture = ExtResource("7_4yhw1")
+
+[node name="Spawn#1" type="Node3D" parent="ItemSpawner"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.377, 0.5, 8.60931)
+
+[node name="Spawn#2" type="Node3D" parent="ItemSpawner"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.437, 0.5, 0)
+
+[node name="Spawn#3" type="Node3D" parent="ItemSpawner"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.17651, 0.5, -8.34157)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
