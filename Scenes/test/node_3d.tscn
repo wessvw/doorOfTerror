@@ -1,10 +1,11 @@
-[gd_scene load_steps=13 format=3 uid="uid://m1715odi57up"]
+[gd_scene load_steps=14 format=3 uid="uid://m1715odi57up"]
 
 [ext_resource type="PackedScene" uid="uid://bkhssu84hb8n0" path="res://Objects/player/player.tscn" id="1_npcsw"]
 [ext_resource type="Script" uid="uid://e55t13mjo3pm" path="res://Scripts/DoorHandler.cs" id="2_ohxyp"]
-[ext_resource type="Texture2D" uid="uid://yrnp0st8bfj2" path="res://icon.svg" id="2_upwws"]
 [ext_resource type="Material" uid="uid://c8886osnfgstx" path="res://Materials/betteroutline.tres" id="3_t24i0"]
+[ext_resource type="Texture2D" uid="uid://hl2nn8o7ee8s" path="res://2D assets/E.png" id="4_1fci8"]
 [ext_resource type="PackedScene" uid="uid://bnw4s7dwqogbv" path="res://Scenes/Items/cube.tscn" id="5_3jubf"]
+[ext_resource type="PackedScene" uid="uid://ch1s0k7ki0mo1" path="res://GUI/inventoryui.tscn" id="6_1fci8"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_upwws"]
 
@@ -19,10 +20,10 @@ albedo_color = Color(0.59, 0.386253, 0.1534, 1)
 [sub_resource type="BoxMesh" id="BoxMesh_upwws"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_t24i0"]
-size = Vector3(1, 1, 0.712891)
+size = Vector3(1, 1, 0.43457)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_npcsw"]
-size = Vector3(1, 1, 0.697388)
+size = Vector3(1, 1, 0.443421)
 
 [node name="Node3D" type="Node3D"]
 
@@ -61,16 +62,15 @@ mesh = SubResource("BoxMesh_upwws")
 skeleton = NodePath("../..")
 
 [node name="eButton" type="Sprite3D" parent="doorObject/handler"]
-transform = Transform3D(0.25, 0, 0, 0, 0.136, 0, 0, 0, 0.25, -0.725935, -0.251918, 0.376114)
-visible = false
-texture = ExtResource("2_upwws")
+transform = Transform3D(0.199999, 0.000142504, -0.000391005, -0.000261192, 0.109, 0.000145131, 0.000391195, -7.88179e-05, 0.2, -0.725935, -0.251918, 0.376114)
+texture = ExtResource("4_1fci8")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="doorObject/handler"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 0.999991, 0, 0, -0.143551)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 0.999991, 0, 0, -0.00439262)
 shape = SubResource("BoxShape3D_t24i0")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="doorObject"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.151306)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.0243225)
 shape = SubResource("BoxShape3D_npcsw")
 
 [node name="cubeItem" parent="." instance=ExtResource("5_3jubf")]
@@ -78,3 +78,17 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.4761, 0.872117, -7.48712)
 
 [node name="cubeItem2" parent="." instance=ExtResource("5_3jubf")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.30617, 0.904714, -8.90831)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="InventoryUI" parent="CanvasLayer" instance=ExtResource("6_1fci8")]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -394.5
+offset_top = -259.5
+offset_right = 394.5
+offset_bottom = 259.5

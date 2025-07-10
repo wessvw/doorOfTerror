@@ -10,13 +10,15 @@ public class Item
 	public int Price { get; }
 
 	public PackedScene Scene;
+	public Texture2D Texture;
 
-	public Item(string iName, string description, int price, PackedScene scene)
+	public Item(string iName, string description, int price, PackedScene scene, Texture2D texture)
 	{
 		Scene = scene;
 		Description = description;
 		IName = iName;
 		Price = price;
+		Texture = texture;
 	}
 
 }

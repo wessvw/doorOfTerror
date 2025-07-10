@@ -1,0 +1,38 @@
+[gd_scene load_steps=3 format=3 uid="uid://bmugjul3qfb1s"]
+
+[ext_resource type="Texture2D" uid="uid://bwmpcf605600q" path="res://2D assets/InvSlotB.png" id="1_dx7ld"]
+[ext_resource type="Script" uid="uid://dcg5l3mx0a7yu" path="res://Scripts/inventory/Invslot.cs" id="1_ybuap"]
+
+[node name="InvSlot" type="Panel"]
+self_modulate = Color(1, 1, 1, 0)
+custom_minimum_size = Vector2(100, 100)
+offset_right = 100.0
+offset_bottom = 100.0
+script = ExtResource("1_ybuap")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(1.23, 1.23)
+texture = ExtResource("1_dx7ld")
+centered = false
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+custom_minimum_size = Vector2(99, 99)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -49.5
+offset_top = -49.5
+offset_right = 49.5
+offset_bottom = 49.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="Panel" parent="CenterContainer"]
+layout_mode = 2
+
+[node name="ItemContainer" type="Sprite2D" parent="CenterContainer/Panel"]
+position = Vector2(-0.5, 1.5)
+scale = Vector2(2.8, 2.8)
