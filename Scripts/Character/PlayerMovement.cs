@@ -3,14 +3,15 @@ using System;
 
 public partial class PlayerMovement : CharacterBody3D
 {
-	public const float Speed = 5.0f;
-	public const float JumpVelocity = 4.5f;
-	public float speed = 0;
+	private const float Speed = 5.0f;
+	private const float JumpVelocity = 4.5f;
+	private float speed = 0;
 	Vector3 velocity;
-	public Node3D cameraPivot;
-	public float MouseSensitivity = 0.002f;
-	private StaticBody3D door;	private Vector3 doorpos;
+	private Node3D cameraPivot;
+	private float MouseSensitivity = 0.002f;
+	private StaticBody3D door; private Vector3 doorpos;
 	public Player aplayer;
+	private Inventoryui invUI;
 
 	private float pitch = 0.0f;
 
@@ -23,6 +24,7 @@ public partial class PlayerMovement : CharacterBody3D
 		Input.MouseMode = Input.MouseModeEnum.Captured;
 		cameraPivot = FindChild("CameraPivot", true, false) as Node3D;
 		door = GetTree().Root.FindChild("doorObject", true, false) as StaticBody3D;
+		invUI = GetTree().Root.FindChild("InventoryUI", true, false) as Inventoryui;
 
 	}
 
@@ -87,14 +89,17 @@ public partial class PlayerMovement : CharacterBody3D
 	{
 		if (@event is InputEventMouseMotion motion)
 		{
-			RotateY(-motion.Relative.X * MouseSensitivity);
-
-			pitch -= motion.Relative.Y * MouseSensitivity;
-			pitch = Mathf.Clamp(pitch, Mathf.DegToRad(-40), Mathf.DegToRad(40));
-
-			if (cameraPivot != null)
+			if (!invUI.Visible)
 			{
-				cameraPivot.Rotation = new Vector3(pitch, 0, 0);
+				RotateY(-motion.Relative.X * MouseSensitivity);
+
+				pitch -= motion.Relative.Y * MouseSensitivity;
+				pitch = Mathf.Clamp(pitch, Mathf.DegToRad(-40), Mathf.DegToRad(40));
+
+				if (cameraPivot != null)
+				{
+					cameraPivot.Rotation = new Vector3(pitch, 0, 0);
+				}
 			}
 		}
 	}
@@ -128,10 +133,10 @@ public partial class Player : Node
 	}
 
 	public Player()
-    {
-        CurrentRoom = null;
-        health = 100;
-        backpack = new Inventory();
-        sanity = 100;
-    }
+	{
+		CurrentRoom = null;
+		health = 100;
+		backpack = new Inventory();
+		sanity = 100;
+	}
 }

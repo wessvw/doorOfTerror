@@ -100,12 +100,11 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.17651, 0.5, -8.34157)
 
 [node name="InventoryUI" parent="CanvasLayer" instance=ExtResource("6_1fci8")]
 visible = false
-anchors_preset = 8
+anchors_preset = 5
 anchor_left = 0.5
-anchor_top = 0.5
 anchor_right = 0.5
-anchor_bottom = 0.5
+anchor_bottom = 0.0
 offset_left = -394.5
-offset_top = -259.5
 offset_right = 394.5
-offset_bottom = 259.5
+offset_bottom = 519.0
+grow_vertical = 1

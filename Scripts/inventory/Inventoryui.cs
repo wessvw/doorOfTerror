@@ -6,7 +6,7 @@ public partial class Inventoryui : Control
 {
 	private PlayerMovement playerscript;
 	private Inventory playerinv;
-	private Godot.Collections.Array<Node> slots;
+	public Godot.Collections.Array<Node> slots;
 	// private Item item;
 
 	public override void _Ready()
@@ -44,11 +44,36 @@ public partial class Inventoryui : Control
 
 			if (slots[i] is Invslot slot)
 			{
-				// GD.Print(item.count);
 				slot.UpdateTexture(item);
 				slot.UpdateCount(item);
 			}
 		}
 
+	}
+
+	public void ignoreSlots(int exception)
+	{
+		GD.Print(exception);
+		for (int i = 0; i < slots.Count; i++)
+		{
+			if (slots[i] is Invslot slot)
+			{
+				if (slot.MouseFilter == Control.MouseFilterEnum.Ignore)
+				{
+					slot.MouseFilter = Control.MouseFilterEnum.Stop;
+				}
+				else
+				{
+					if (i == exception)
+					{
+						slot.MouseFilter = Control.MouseFilterEnum.Stop;
+					}
+					else
+					{
+						slot.MouseFilter = Control.MouseFilterEnum.Ignore;
+					}
+				}
+			}
+		}
 	}
 }

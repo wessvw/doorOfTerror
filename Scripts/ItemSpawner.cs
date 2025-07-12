@@ -25,7 +25,7 @@ public partial class ItemSpawner : Node
 
 	public void SpawnItems()
 	{
-		for (int i = 0; i < spawnpoints.Count-1; i++)
+		for (int i = 0; i < (spawnpoints.Count); i++)
 		{
 			Node3D cubeInstance = (Node3D)cube.Scene.Instantiate();
 			Node3D spawnPoint = (Node3D)spawnpoints[i];
