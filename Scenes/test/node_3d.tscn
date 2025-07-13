@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://m1715odi57up"]
+[gd_scene load_steps=17 format=3 uid="uid://m1715odi57up"]
 
 [ext_resource type="PackedScene" uid="uid://bkhssu84hb8n0" path="res://Objects/player/player.tscn" id="1_npcsw"]
 [ext_resource type="Script" uid="uid://e55t13mjo3pm" path="res://Scripts/DoorHandler.cs" id="2_ohxyp"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://ch1s0k7ki0mo1" path="res://GUI/inventoryui.tscn" id="6_1fci8"]
 [ext_resource type="Script" uid="uid://doi7chx17aohh" path="res://Scripts/ItemSpawner.cs" id="6_sb7bi"]
 [ext_resource type="Texture2D" uid="uid://bndrqlef183vx" path="res://2D assets/CubeItem.png" id="7_4yhw1"]
+[ext_resource type="PackedScene" uid="uid://c5jgjpeq16uvb" path="res://GUI/hotBarSlot.tscn" id="9_4yhw1"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_upwws"]
 
@@ -108,3 +109,61 @@ offset_left = -394.5
 offset_right = 394.5
 offset_bottom = 519.0
 grow_vertical = 1
+
+[node name="Hotbar" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -20.0
+offset_top = -40.0
+offset_right = 20.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="HotBarSlot" parent="CanvasLayer/Hotbar" instance=ExtResource("9_4yhw1")]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -117.0
+offset_top = -7.0
+offset_right = -117.0
+offset_bottom = -7.0
+grow_horizontal = 2
+grow_vertical = 0
+metadata/type = 101
+
+[node name="HotBarSlot2" parent="CanvasLayer/Hotbar" instance=ExtResource("9_4yhw1")]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -1.0
+offset_top = -7.0
+offset_right = -1.0
+offset_bottom = -7.0
+grow_horizontal = 2
+grow_vertical = 0
+metadata/type = 102
+
+[node name="HotBarSlot3" parent="CanvasLayer/Hotbar" instance=ExtResource("9_4yhw1")]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = 115.0
+offset_top = -7.0
+offset_right = 115.0
+offset_bottom = -7.0
+grow_horizontal = 2
+grow_vertical = 0
+metadata/type = 103

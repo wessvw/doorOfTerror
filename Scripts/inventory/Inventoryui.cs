@@ -7,13 +7,16 @@ public partial class Inventoryui : Control
 	private PlayerMovement playerscript;
 	private Inventory playerinv;
 	public Godot.Collections.Array<Node> slots;
-	// private Item item;
+	private Godot.Collections.Array<Node> hotBarSlots;
+	private int hotBarNumber = 0;
+	private int needToRemoveTextureSlot;
 
 	public override void _Ready()
 	{
 		slots = GetChild(0).GetChild(0).GetChildren();
 		playerscript = GetTree().Root.FindChild("Player", true, false) as PlayerMovement;
 		playerinv = playerscript.aplayer.Backpack;
+		hotBarSlots = GetParent().GetNode("Hotbar").GetChildren();
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -41,11 +44,30 @@ public partial class Inventoryui : Control
 		{
 			string key = keys[i];
 			Item item = playerinv.Contents[key];
-
-			if (slots[i] is Invslot slot)
+			if (item.slot > 100)
+			{
+				if (hotBarSlots[item.slot - 101] is hotBarSlot hslot)
+				{
+					hslot.UpdateTexture(item);
+					hslot.UpdateCount(item);
+					if (slots[needToRemoveTextureSlot - 1] is Invslot slot)
+					{
+						GD.Print(needToRemoveTextureSlot - 1);
+						slot.UpdateTexture(null);
+						slot.UpdateCount(null);
+						slot.itemInSlot = null;
+					}
+				}
+			}
+			else if (item.slot == -1)
+			{
+				item.slot = i;
+			}
+			else if (slots[item.slot] is Invslot slot)
 			{
 				slot.UpdateTexture(item);
 				slot.UpdateCount(item);
+
 			}
 		}
 
@@ -75,5 +97,12 @@ public partial class Inventoryui : Control
 				}
 			}
 		}
+	}
+
+	public void ChangeToHotbarSlot(int hotbarslotNumber, int removeSlotNumber, Item item)
+	{
+		hotBarNumber = hotbarslotNumber;
+		needToRemoveTextureSlot = removeSlotNumber;
+		item.slot = hotbarslotNumber;
 	}
 }

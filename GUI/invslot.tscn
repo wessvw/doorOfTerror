@@ -78,7 +78,7 @@ offset_right = 195.0
 offset_bottom = 90.0
 flat = true
 script = ExtResource("4_3nifn")
-metadata/type = 3
+metadata/type = 103
 
 [node name="RichTextLabel" type="RichTextLabel" parent="buttons/Button3"]
 z_index = 3
@@ -107,7 +107,7 @@ offset_top = 29.0
 offset_right = 194.0
 offset_bottom = 58.0
 script = ExtResource("4_3nifn")
-metadata/type = 2
+metadata/type = 102
 
 [node name="Sprite2D" type="Sprite2D" parent="buttons/Button2"]
 z_index = 2
@@ -136,7 +136,7 @@ offset_top = -3.0
 offset_right = 195.0
 offset_bottom = 26.0
 script = ExtResource("4_3nifn")
-metadata/type = 1
+metadata/type = 101
 
 [node name="Sprite2D" type="Sprite2D" parent="buttons/Button1"]
 z_index = 2
@@ -146,6 +146,7 @@ texture = ExtResource("3_g0au0")
 
 [node name="RichTextLabel" type="RichTextLabel" parent="buttons/Button1"]
 z_index = 3
+layout_mode = 0
 offset_right = 102.0
 offset_bottom = 30.0
 mouse_filter = 2

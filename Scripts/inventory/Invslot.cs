@@ -8,6 +8,7 @@ public partial class Invslot : Panel
 	private Panel buttons;
 	private Inventoryui ui;
 	private int number;
+	public Item itemInSlot;
 
 
 	public override void _Ready()
@@ -18,6 +19,7 @@ public partial class Invslot : Panel
 		ui = GetParent().GetParent().GetParent<Inventoryui>();
 		buttons = GetChild<Panel>(3);
 		number = (int)GetMeta("type");
+
 	}
 
 
@@ -35,7 +37,7 @@ public partial class Invslot : Panel
 				else
 				{
 					buttons.Visible = false;
-					ui.ignoreSlots(number- 1);
+					ui.ignoreSlots(number - 1);
 				}
 			}
 		}
@@ -51,12 +53,28 @@ public partial class Invslot : Panel
 		{
 			itemVisual.Visible = true;
 			itemVisual.Texture = item.Texture;
+			itemInSlot = item;
 		}
+	}
+	public void RemoveTexture()
+	{
+		itemVisual = null;
 	}
 	public void UpdateCount(Item item)
 	{
-		textLabel.Text = string.Format("[color=#000]{0}[/color]", item.count);
+		if (item != null)
+		{
+			textLabel.Text = string.Format("[color=#000]{0}[/color]", item.count);
+		}
+		else
+		{
+			textLabel.Text = "";
+		}
 	}
 
-	// public delegate void SlotPressedEventHandler(Item item);
+	public void hotBarChange(int hotbarslotNumber)
+	{
+		ui.ChangeToHotbarSlot(hotbarslotNumber,	number ,itemInSlot);
+	}
+
 }

@@ -4,9 +4,11 @@ using System;
 public partial class SlotButton : Button
 {
 	private int slotNumber;
+	private Invslot slot;
 	public override void _Ready()
 	{
 		slotNumber = (int)GetMeta("type");
+		slot = GetParent().GetParent<Invslot>();
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -20,7 +22,10 @@ public partial class SlotButton : Button
 		{
 			if (mouseEvent.ButtonIndex == MouseButton.Left && mouseEvent.Pressed)
 			{
-				GD.Print("hello" + slotNumber);
+				if (slot.itemInSlot != null)
+				{
+					slot.hotBarChange(slotNumber);
+				}
 			}
 		}
 	}

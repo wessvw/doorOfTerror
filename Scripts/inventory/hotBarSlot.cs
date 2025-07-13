@@ -8,10 +8,8 @@ public partial class hotBarSlot : Panel
 
 	public override void _Ready()
 	{
-		// GD.Print(string.Format("[color=#000]", item.count));
 		textLabel = GetNode<RichTextLabel>("itemCount");
 		itemVisual = GetChild(1).GetChild(0).GetNode<Sprite2D>("ItemContainer");
-
 	}
 
 
