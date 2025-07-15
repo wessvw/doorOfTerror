@@ -13,9 +13,10 @@ public partial class SpawnedItem : StaticBody3D, IUsable
 	{
 		spawner = GetTree().Root.FindChild("ItemSpawner", true, false) as ItemSpawner;
 		playerscript = GetTree().Root.FindChild("Player", true, false) as PlayerMovement;
-		// cube = spawner.cube;
 		mesh = GetChild<MeshInstance3D>(0);
 		ebutton = GetChild<Sprite3D>(1);
+		cube = spawner.cube;
+		GD.Print(cube);
 	}
 
 	public override void _Process(double delta)
@@ -58,18 +59,23 @@ public partial class SpawnedItem : StaticBody3D, IUsable
 		return distance <= 5f;
 	}
 
+	public void setUp(Item item, PlayerMovement playerScript)
+	{
+		playerscript = playerScript;
+		cube = item;
+	}
+
 	public void Use()
 	{
-		if (cube == null) GD.Print("Player is null!");
 		if (cube.count > 1)
 		{
 			cube.count = cube.count - 1;
 		}
-		else
+		else if (cube.count == 1)
 		{
 			playerscript.aplayer.Backpack.Get(cube.IName);
 		}
 		playerscript.aplayer.Sanity = playerscript.aplayer.Sanity + 100;
-		// GD.Print(playerscript.aplayer.Sanity);
+		GD.Print(playerscript.aplayer.Sanity);
 	}
 }

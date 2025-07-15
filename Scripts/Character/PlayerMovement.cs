@@ -87,7 +87,7 @@ public partial class PlayerMovement : CharacterBody3D
 		{
 			if (Input.IsActionJustPressed("leftClick"))
 			{
-				// invUI.useSelectedItem();
+				invUI.useSelectedItem();
 			}
 		}
 		if (Input.IsActionJustPressed("accept"))

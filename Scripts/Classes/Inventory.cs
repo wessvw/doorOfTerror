@@ -47,7 +47,7 @@ public class Inventory
 		if (contents.ContainsKey(itemName))
 		{
 			Item gottenitem = contents[itemName];
-			// contents.Remove(itemName);
+			contents.Remove(itemName);
 			return gottenitem;
 		}
 		return null;

@@ -137,22 +137,31 @@ public partial class Inventoryui : Control
 		// GD.Print(hotbarslotNumber);
 	}
 
-	// public void useSelectedItem()
-	// {
-	// 	Item selectedItem;
-	// 	selectedItem = hotBarSlots[hotbarNode.selectedSlot].itemInSlot;
-	// 	useItem(selectedItem);
-	// }
+	public void useSelectedItem()
+	{
+		if (hotBarSlots[hotbarNode.selectedSlot].itemInSlot != null)
+		{
+			Item selectedItem;
+			selectedItem = hotBarSlots[hotbarNode.selectedSlot].itemInSlot;
+			useItem(selectedItem);
+			// hotBarSlots[hotbarNode.selectedSlot].itemInSlot = null;
+			// hotBarSlots[hotbarNode.selectedSlot].UpdateTexture(null);
+			// hotBarSlots[hotbarNode.selectedSlot].UpdateCount(null);
+		}
+	}
 
-	// public void useItem(Item item)
-	// {
-	// 	if (item != null)
-	// 	{
-	// 		Node instance = item.Scene.Instantiate();
-	// 		if (instance is IUsable usable)
-	// 		{
-	// 			usable.Use();
-	// 		}
-	// 	}
-	// }
+	public void useItem(Item item)
+	{
+		GD.Print(item.IName);
+		if (item != null)
+		{
+			Node instance = item.Scene.Instantiate();
+			if (instance is IUsable usable)
+			{
+				GD.Print(usable);
+				usable.setUp(item,playerscript);
+				usable.Use();
+			}
+		}
+	}
 }
