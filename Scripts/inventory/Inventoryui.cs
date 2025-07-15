@@ -1,13 +1,15 @@
 using Godot;
 using System;
 using System.Linq;
+using System.Collections.Generic;
 
 public partial class Inventoryui : Control
 {
 	private PlayerMovement playerscript;
 	private Inventory playerinv;
 	public Godot.Collections.Array<Node> slots;
-	private Godot.Collections.Array<Node> hotBarSlots;
+	public Godot.Collections.Array<hotBarSlot> hotBarSlots;
+	public Hotbar hotbarNode;
 	private int hotBarNumber = 0;
 	private int needToRemoveTextureSlot;
 
@@ -16,7 +18,17 @@ public partial class Inventoryui : Control
 		slots = GetChild(0).GetChild(0).GetChildren();
 		playerscript = GetTree().Root.FindChild("Player", true, false) as PlayerMovement;
 		playerinv = playerscript.aplayer.Backpack;
-		hotBarSlots = GetParent().GetNode("Hotbar").GetChildren();
+		hotbarNode = GetParent().GetNode<Hotbar>("Hotbar");
+		var children = hotbarNode.GetChildren();
+		hotBarSlots = new Godot.Collections.Array<hotBarSlot>();
+
+		foreach (Node child in children)
+		{
+			if (child is hotBarSlot slot)
+			{
+				hotBarSlots.Add(slot);
+			}
+		}
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -52,7 +64,7 @@ public partial class Inventoryui : Control
 					hslot.UpdateCount(item);
 					if (slots[needToRemoveTextureSlot - 1] is Invslot slot)
 					{
-						GD.Print(needToRemoveTextureSlot - 1);
+						// GD.Print(needToRemoveTextureSlot - 1);
 						slot.UpdateTexture(null);
 						slot.UpdateCount(null);
 						slot.itemInSlot = null;
@@ -67,6 +79,18 @@ public partial class Inventoryui : Control
 			{
 				slot.UpdateTexture(item);
 				slot.UpdateCount(item);
+				if (needToRemoveTextureSlot > 100)
+				{
+					// GD.Print(needToRemoveTextureSlot - 101);
+					if (hotBarSlots[needToRemoveTextureSlot - 101] is hotBarSlot hslot)
+					{
+						// GD.Print(needToRemoveTextureSlot);
+						hslot.UpdateTexture(null);
+						hslot.UpdateCount(null);
+						hslot.itemInSlot = null;
+						needToRemoveTextureSlot = -1;
+					}
+				}
 
 			}
 		}
@@ -75,7 +99,7 @@ public partial class Inventoryui : Control
 
 	public void ignoreSlots(int exception)
 	{
-		GD.Print(exception);
+		// GD.Print(exception);
 		for (int i = 0; i < slots.Count; i++)
 		{
 			if (slots[i] is Invslot slot)
@@ -105,4 +129,30 @@ public partial class Inventoryui : Control
 		needToRemoveTextureSlot = removeSlotNumber;
 		item.slot = hotbarslotNumber;
 	}
+	public void ChangeToInventorySlot(int hotbarslotNumber, int changeToSlotNumber)
+	{
+		Item item = hotBarSlots[hotbarslotNumber - 101].itemInSlot;
+		item.slot = changeToSlotNumber - 1;
+		needToRemoveTextureSlot = hotbarslotNumber;
+		// GD.Print(hotbarslotNumber);
+	}
+
+	// public void useSelectedItem()
+	// {
+	// 	Item selectedItem;
+	// 	selectedItem = hotBarSlots[hotbarNode.selectedSlot].itemInSlot;
+	// 	useItem(selectedItem);
+	// }
+
+	// public void useItem(Item item)
+	// {
+	// 	if (item != null)
+	// 	{
+	// 		Node instance = item.Scene.Instantiate();
+	// 		if (instance is IUsable usable)
+	// 		{
+	// 			usable.Use();
+	// 		}
+	// 	}
+	// }
 }

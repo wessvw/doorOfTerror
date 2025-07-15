@@ -72,9 +72,19 @@ public partial class Invslot : Panel
 		}
 	}
 
-	public void hotBarChange(int hotbarslotNumber)
+	public void toHotBarChange(int hotbarslotNumber)
 	{
-		ui.ChangeToHotbarSlot(hotbarslotNumber,	number ,itemInSlot);
+		ui.ChangeToHotbarSlot(hotbarslotNumber, number, itemInSlot);
 	}
+	
+	public void backToInvChange(int hotbarslotNumber)
+	{
+		if (itemInSlot == null)
+		{
+			ui.ChangeToInventorySlot(hotbarslotNumber, number);
+		}
+
+	}
+	
 
 }

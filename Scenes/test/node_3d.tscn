@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://m1715odi57up"]
+[gd_scene load_steps=18 format=3 uid="uid://m1715odi57up"]
 
 [ext_resource type="PackedScene" uid="uid://bkhssu84hb8n0" path="res://Objects/player/player.tscn" id="1_npcsw"]
 [ext_resource type="Script" uid="uid://e55t13mjo3pm" path="res://Scripts/DoorHandler.cs" id="2_ohxyp"]
@@ -9,6 +9,7 @@
 [ext_resource type="Script" uid="uid://doi7chx17aohh" path="res://Scripts/ItemSpawner.cs" id="6_sb7bi"]
 [ext_resource type="Texture2D" uid="uid://bndrqlef183vx" path="res://2D assets/CubeItem.png" id="7_4yhw1"]
 [ext_resource type="PackedScene" uid="uid://c5jgjpeq16uvb" path="res://GUI/hotBarSlot.tscn" id="9_4yhw1"]
+[ext_resource type="Script" uid="uid://dunautlw3ujv4" path="res://Scripts/inventory/Hotbar.cs" id="9_khjd1"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_upwws"]
 
@@ -122,6 +123,7 @@ offset_top = -40.0
 offset_right = 20.0
 grow_horizontal = 2
 grow_vertical = 0
+script = ExtResource("9_khjd1")
 
 [node name="HotBarSlot" parent="CanvasLayer/Hotbar" instance=ExtResource("9_4yhw1")]
 layout_mode = 1

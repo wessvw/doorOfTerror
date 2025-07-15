@@ -24,7 +24,11 @@ public partial class SlotButton : Button
 			{
 				if (slot.itemInSlot != null)
 				{
-					slot.hotBarChange(slotNumber);
+					slot.toHotBarChange(slotNumber);
+				}
+				if (slot.itemInSlot == null)
+				{
+					slot.backToInvChange(slotNumber);
 				}
 			}
 		}

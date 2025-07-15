@@ -5,11 +5,10 @@ public partial class PlayerMovement : CharacterBody3D
 {
 	private const float Speed = 5.0f;
 	private const float JumpVelocity = 4.5f;
-	private float speed = 0;
+	private float MouseSensitivity = 0.002f;
 	Vector3 velocity;
 	private Node3D cameraPivot;
-	private float MouseSensitivity = 0.002f;
-	private StaticBody3D door; private Vector3 doorpos;
+	private StaticBody3D door;
 	public Player aplayer;
 	private Inventoryui invUI;
 
@@ -32,23 +31,6 @@ public partial class PlayerMovement : CharacterBody3D
 	{
 		aplayer.Position = GlobalPosition;
 		// GD.Print(player.Backpack);
-
-		if (Input.IsActionJustPressed("accept"))
-		{
-			GD.Print(door.GlobalPosition);
-			if (door != null && isPlayerNearDoor())
-			{
-				// door.GetNode<Sprite3D>("eButton").Visible = true;
-			}
-			else
-			{
-				GD.Print("player is not close enough");
-			}
-		}
-		if (Input.IsActionJustPressed("escape"))
-		{
-			Input.MouseMode = Input.MouseModeEnum.Visible;
-		}
 	}
 
 	public override void _PhysicsProcess(double delta)
@@ -59,7 +41,6 @@ public partial class PlayerMovement : CharacterBody3D
 		{
 			velocity += GetGravity() * (float)delta;
 		}
-
 		// Handle Jump.
 		if (Input.IsActionJustPressed("ui_accept") && IsOnFloor())
 		{
@@ -102,6 +83,29 @@ public partial class PlayerMovement : CharacterBody3D
 				}
 			}
 		}
+		if (@event is InputEventMouseButton mouseEvent)
+		{
+			if (Input.IsActionJustPressed("leftClick"))
+			{
+				// invUI.useSelectedItem();
+			}
+		}
+		if (Input.IsActionJustPressed("accept"))
+		{
+			GD.Print(door.GlobalPosition);
+			if (door != null && isPlayerNearDoor())
+			{
+				// door.GetNode<Sprite3D>("eButton").Visible = true;
+			}
+			else
+			{
+				GD.Print("player is not close enough");
+			}
+		}
+		if (Input.IsActionJustPressed("escape"))
+		{
+			Input.MouseMode = Input.MouseModeEnum.Visible;
+		}
 	}
 
 	public bool isPlayerNearDoor()
@@ -130,6 +134,12 @@ public partial class Player : Node
 	{
 		get { return backpack; }
 		set { backpack = value; }
+	}
+
+	public int Sanity
+	{
+		get { return sanity; }
+		set { sanity = value; }
 	}
 
 	public Player()
