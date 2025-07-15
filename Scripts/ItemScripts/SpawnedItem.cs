@@ -74,6 +74,8 @@ public partial class SpawnedItem : StaticBody3D, IUsable
 		else if (cube.count == 1)
 		{
 			playerscript.aplayer.Backpack.Get(cube.IName);
+			cube.count = 0;
+			cube.slot = -1;
 		}
 		playerscript.aplayer.Sanity = playerscript.aplayer.Sanity + 100;
 		GD.Print(playerscript.aplayer.Sanity);

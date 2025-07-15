@@ -141,13 +141,20 @@ public partial class Inventoryui : Control
 	{
 		if (hotBarSlots[hotbarNode.selectedSlot].itemInSlot != null)
 		{
-			Item selectedItem;
-			selectedItem = hotBarSlots[hotbarNode.selectedSlot].itemInSlot;
-			useItem(selectedItem);
-			// hotBarSlots[hotbarNode.selectedSlot].itemInSlot = null;
-			// hotBarSlots[hotbarNode.selectedSlot].UpdateTexture(null);
-			// hotBarSlots[hotbarNode.selectedSlot].UpdateCount(null);
+			useItem(hotBarSlots[hotbarNode.selectedSlot].itemInSlot);
+			if (hotBarSlots[hotbarNode.selectedSlot].itemInSlot.count == 0)
+			{
+				hotBarSlots[hotbarNode.selectedSlot].itemInSlot = null;
+				hotBarSlots[hotbarNode.selectedSlot].UpdateTexture(null);
+				hotBarSlots[hotbarNode.selectedSlot].UpdateCount(null);
+			}
 		}
+		// else if (hotBarSlots[hotbarNode.selectedSlot].itemInSlot.count == 0)
+		// {
+		// 	hotBarSlots[hotbarNode.selectedSlot].itemInSlot = null;
+		// 	hotBarSlots[hotbarNode.selectedSlot].UpdateTexture(null);
+		// 	hotBarSlots[hotbarNode.selectedSlot].UpdateCount(null);
+		// }
 	}
 
 	public void useItem(Item item)
@@ -159,7 +166,7 @@ public partial class Inventoryui : Control
 			if (instance is IUsable usable)
 			{
 				GD.Print(usable);
-				usable.setUp(item,playerscript);
+				usable.setUp(item, playerscript);
 				usable.Use();
 			}
 		}
