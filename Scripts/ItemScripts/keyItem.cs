@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public partial class SpawnedItem : StaticBody3D, IUsable
+public partial class keyItem : StaticBody3D, IUsable
 {
 	private ItemSpawner spawner;
 	private PlayerMovement playerscript;
@@ -15,7 +15,8 @@ public partial class SpawnedItem : StaticBody3D, IUsable
 		playerscript = GetTree().Root.FindChild("Player", true, false) as PlayerMovement;
 		mesh = GetChild<MeshInstance3D>(0);
 		ebutton = GetChild<Sprite3D>(1);
-		thisitem = spawner.cube;
+		thisitem = spawner.key;
+		GD.Print(thisitem);
 	}
 
 	public override void _Process(double delta)

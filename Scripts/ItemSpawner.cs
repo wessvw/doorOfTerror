@@ -1,21 +1,28 @@
 using Godot;
 using System;
+using System.Collections.Generic;
 
 public partial class ItemSpawner : Node
 {
 	private Godot.Collections.Array<Node> spawnpoints;
+	// items
 	public Item cube;
-	
+	public Item key;
+	// item textures
 	[Export] Texture2D cubeTexture;
 	public override void _Ready()
 	{
 		spawnpoints = GetChildren();
+		var textures = LoadPngTextures("res://2D assets/itemTextures/");
+		var scenes = LoadScenes("res://Scenes/Items/");
 		//cube item
-		PackedScene cubeScene = GD.Load<PackedScene>("res://Scenes/Items/cube.tscn");
-		cube = new Item("cube", "just a regular cube", 1, cubeScene, cubeTexture);
+		cube = new Item("cube", "just a regular cube", 1,scenes["cube"],textures["cube"]);
 		//key item
+		key = new Item("key", "a key to open something", 1,scenes["key"], textures["key"]);
 		//document item
-		SpawnItems();
+
+
+		// SpawnItems();
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -32,5 +39,91 @@ public partial class ItemSpawner : Node
 			AddChild(cubeInstance);
 			cubeInstance.GlobalPosition = spawnPoint.GlobalPosition;
 		}
+	}
+
+	private Dictionary<string, Texture2D> LoadPngTextures(string path)
+	{
+		GD.Print($"Trying to open: {path}");
+		var textures = new Dictionary<string, Texture2D>();
+
+		using DirAccess dir = DirAccess.Open(path);
+		if (dir == null)
+		{
+			GD.PrintErr($"Could not open directory: {path}");
+			return textures;
+		}
+
+		dir.ListDirBegin();
+
+		while (true)
+		{
+			string fileName = dir.GetNext();
+			if (fileName == "")
+				break;
+
+			if (dir.CurrentIsDir())
+				continue;
+
+			if (fileName.EndsWith(".png"))
+			{
+				string fullPath = $"{path}{fileName}";
+				GD.Print($"Loading: {fullPath}");
+				Texture2D texture = GD.Load<Texture2D>(fullPath);
+				if (texture != null)
+				{
+					string key = fileName.GetBaseName();
+					textures[key] = texture;
+				}
+				else
+				{
+					GD.PrintErr($"Failed to load texture at: {fullPath}");
+				}
+			}
+		}
+
+		dir.ListDirEnd();
+
+		return textures;
+	}
+
+
+	private Dictionary<string, PackedScene> LoadScenes(string path)
+	{
+		var scenes = new Dictionary<string, PackedScene>();
+
+		using DirAccess dir = DirAccess.Open(path);
+		if (dir == null)
+		{
+			GD.PrintErr($"Could not open directory: {path}");
+			return scenes;
+		}
+
+		dir.ListDirBegin();
+
+		while (true)
+		{
+			string fileName = dir.GetNext();
+			if (fileName == "")
+				break;
+
+			if (dir.CurrentIsDir())
+				continue; // skip folders
+
+			if (fileName.EndsWith(".tscn"))
+			{
+				string fullPath = $"{path}{fileName}";
+				PackedScene scene = GD.Load<PackedScene>(fullPath);
+				if (scene != null)
+				{
+					// Remove extension for key
+					string key = fileName.GetBaseName();
+					scenes[key] = scene;
+				}
+			}
+		}
+
+		dir.ListDirEnd();
+
+		return scenes;
 	}
 }

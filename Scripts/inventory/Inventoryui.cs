@@ -149,17 +149,10 @@ public partial class Inventoryui : Control
 				hotBarSlots[hotbarNode.selectedSlot].UpdateCount(null);
 			}
 		}
-		// else if (hotBarSlots[hotbarNode.selectedSlot].itemInSlot.count == 0)
-		// {
-		// 	hotBarSlots[hotbarNode.selectedSlot].itemInSlot = null;
-		// 	hotBarSlots[hotbarNode.selectedSlot].UpdateTexture(null);
-		// 	hotBarSlots[hotbarNode.selectedSlot].UpdateCount(null);
-		// }
 	}
 
 	public void useItem(Item item)
 	{
-		GD.Print(item.IName);
 		if (item != null)
 		{
 			Node instance = item.Scene.Instantiate();
