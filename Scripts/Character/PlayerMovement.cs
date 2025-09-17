@@ -30,7 +30,6 @@ public partial class PlayerMovement : CharacterBody3D
 	public override void _Process(double delta)
 	{
 		aplayer.Position = GlobalPosition;
-		// GD.Print(player.Backpack);
 	}
 
 	public override void _PhysicsProcess(double delta)
@@ -92,10 +91,9 @@ public partial class PlayerMovement : CharacterBody3D
 		}
 		if (Input.IsActionJustPressed("accept"))
 		{
-			GD.Print(door.GlobalPosition);
 			if (door != null && isPlayerNearDoor())
 			{
-				// door.GetNode<Sprite3D>("eButton").Visible = true;
+				
 			}
 			else
 			{

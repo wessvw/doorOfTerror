@@ -1,16 +1,16 @@
-[gd_scene load_steps=19 format=3 uid="uid://m1715odi57up"]
+[gd_scene load_steps=19 format=3 uid="uid://dx8yl1u7bg1w5"]
 
-[ext_resource type="PackedScene" uid="uid://bkhssu84hb8n0" path="res://Objects/player/player.tscn" id="1_npcsw"]
-[ext_resource type="Script" uid="uid://e55t13mjo3pm" path="res://Scripts/DoorHandler.cs" id="2_ohxyp"]
-[ext_resource type="Material" uid="uid://c8886osnfgstx" path="res://Materials/betteroutline.tres" id="3_t24i0"]
-[ext_resource type="Texture2D" uid="uid://hl2nn8o7ee8s" path="res://2D assets/E.png" id="4_1fci8"]
-[ext_resource type="PackedScene" uid="uid://bnw4s7dwqogbv" path="res://Scenes/Items/cube.tscn" id="5_3jubf"]
-[ext_resource type="PackedScene" uid="uid://ch1s0k7ki0mo1" path="res://GUI/inventoryui.tscn" id="6_1fci8"]
-[ext_resource type="Script" uid="uid://doi7chx17aohh" path="res://Scripts/ItemSpawner.cs" id="6_sb7bi"]
-[ext_resource type="Texture2D" uid="uid://bndrqlef183vx" path="res://2D assets/itemTextures/cube.png" id="7_4yhw1"]
-[ext_resource type="PackedScene" uid="uid://c5jgjpeq16uvb" path="res://GUI/hotBarSlot.tscn" id="9_4yhw1"]
-[ext_resource type="Script" uid="uid://dunautlw3ujv4" path="res://Scripts/inventory/Hotbar.cs" id="9_khjd1"]
-[ext_resource type="PackedScene" uid="uid://bm030xygdi1ig" path="res://Scenes/Items/key.tscn" id="11_jibqa"]
+[ext_resource type="PackedScene" uid="uid://bkhssu84hb8n0" path="res://Objects/player/player.tscn" id="1_tdymw"]
+[ext_resource type="Script" uid="uid://e55t13mjo3pm" path="res://Scripts/DoorHandler.cs" id="2_3aufo"]
+[ext_resource type="Material" uid="uid://c8886osnfgstx" path="res://Materials/betteroutline.tres" id="3_tnx08"]
+[ext_resource type="Texture2D" uid="uid://hl2nn8o7ee8s" path="res://2D assets/E.png" id="4_0s2ns"]
+[ext_resource type="PackedScene" uid="uid://bnw4s7dwqogbv" path="res://Scenes/Items/cube.tscn" id="5_bvty6"]
+[ext_resource type="Script" uid="uid://doi7chx17aohh" path="res://Scripts/ItemSpawner.cs" id="6_h7p5w"]
+[ext_resource type="Texture2D" uid="uid://bndrqlef183vx" path="res://2D assets/itemTextures/cube.png" id="7_xvo1u"]
+[ext_resource type="PackedScene" uid="uid://ch1s0k7ki0mo1" path="res://GUI/inventoryui.tscn" id="8_as74h"]
+[ext_resource type="Script" uid="uid://dunautlw3ujv4" path="res://Scripts/inventory/Hotbar.cs" id="9_pmq0v"]
+[ext_resource type="PackedScene" uid="uid://c5jgjpeq16uvb" path="res://GUI/hotBarSlot.tscn" id="10_e7lwt"]
+[ext_resource type="PackedScene" uid="uid://bm030xygdi1ig" path="res://Scenes/Items/key.tscn" id="11_tv7a3"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_upwws"]
 
@@ -48,7 +48,7 @@ skeleton = NodePath("../CollisionShape3D")
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.715937, 0.698165, 0, -0.698165, 0.715937, 0, 15.9163, 0)
 
-[node name="Player" parent="." instance=ExtResource("1_npcsw")]
+[node name="Player" parent="." instance=ExtResource("1_tdymw")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.01553, 1.37212, 0.455429)
 
 [node name="doorObject" type="StaticBody3D" parent="."]
@@ -56,19 +56,19 @@ transform = Transform3D(4.39909, 0, 0, 0, 7.46394, 0, 0, 0, 1, 0, 3.92819, -16.8
 
 [node name="handler" type="StaticBody3D" parent="doorObject"]
 transform = Transform3D(1.00218, 0, 0, 0, 1.00218, 0, 0, 0, 1.00218, 0, 0, 0)
-script = ExtResource("2_ohxyp")
-outlineMaterial = ExtResource("3_t24i0")
+script = ExtResource("2_3aufo")
+outlineMaterial = ExtResource("3_tnx08")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="doorObject/handler"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 0.426124, 0, 0, 0)
 material_override = SubResource("StandardMaterial3D_t24i0")
-material_overlay = ExtResource("3_t24i0")
+material_overlay = ExtResource("3_tnx08")
 mesh = SubResource("BoxMesh_upwws")
 skeleton = NodePath("../..")
 
 [node name="eButton" type="Sprite3D" parent="doorObject/handler"]
 transform = Transform3D(0.199999, 0.000142504, -0.000391005, -0.000261192, 0.109, 0.000145131, 0.000391195, -7.88179e-05, 0.2, -0.725935, -0.251918, 0.376114)
-texture = ExtResource("4_1fci8")
+texture = ExtResource("4_0s2ns")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="doorObject/handler"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 0.999991, 0, 0, -0.00439262)
@@ -78,17 +78,17 @@ shape = SubResource("BoxShape3D_t24i0")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.0243225)
 shape = SubResource("BoxShape3D_npcsw")
 
-[node name="cubeItem" parent="." instance=ExtResource("5_3jubf")]
+[node name="cubeItem" parent="." instance=ExtResource("5_bvty6")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.4761, 0.872117, -7.48712)
 visible = false
 
-[node name="cubeItem2" parent="." instance=ExtResource("5_3jubf")]
+[node name="cubeItem2" parent="." instance=ExtResource("5_bvty6")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.30617, 0.904714, -8.90831)
 visible = false
 
 [node name="ItemSpawner" type="Node3D" parent="."]
-script = ExtResource("6_sb7bi")
-cubeTexture = ExtResource("7_4yhw1")
+script = ExtResource("6_h7p5w")
+cubeTexture = ExtResource("7_xvo1u")
 
 [node name="Spawn#1" type="Node3D" parent="ItemSpawner"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.377, 0.5, 8.60931)
@@ -101,7 +101,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.17651, 0.5, -8.34157)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
-[node name="InventoryUI" parent="CanvasLayer" instance=ExtResource("6_1fci8")]
+[node name="InventoryUI" parent="CanvasLayer" instance=ExtResource("8_as74h")]
 visible = false
 anchors_preset = 5
 anchor_left = 0.5
@@ -124,9 +124,9 @@ offset_top = -40.0
 offset_right = 20.0
 grow_horizontal = 2
 grow_vertical = 0
-script = ExtResource("9_khjd1")
+script = ExtResource("9_pmq0v")
 
-[node name="HotBarSlot" parent="CanvasLayer/Hotbar" instance=ExtResource("9_4yhw1")]
+[node name="HotBarSlot" parent="CanvasLayer/Hotbar" instance=ExtResource("10_e7lwt")]
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
@@ -141,7 +141,7 @@ grow_horizontal = 2
 grow_vertical = 0
 metadata/type = 101
 
-[node name="HotBarSlot2" parent="CanvasLayer/Hotbar" instance=ExtResource("9_4yhw1")]
+[node name="HotBarSlot2" parent="CanvasLayer/Hotbar" instance=ExtResource("10_e7lwt")]
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
@@ -156,7 +156,7 @@ grow_horizontal = 2
 grow_vertical = 0
 metadata/type = 102
 
-[node name="HotBarSlot3" parent="CanvasLayer/Hotbar" instance=ExtResource("9_4yhw1")]
+[node name="HotBarSlot3" parent="CanvasLayer/Hotbar" instance=ExtResource("10_e7lwt")]
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
@@ -171,20 +171,20 @@ grow_horizontal = 2
 grow_vertical = 0
 metadata/type = 103
 
-[node name="key" parent="." instance=ExtResource("11_jibqa")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.21307, 0.372117, 5.81367)
+[node name="key" parent="." instance=ExtResource("11_tv7a3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.15373, 2.59293, 12.047)
 
-[node name="cube" parent="." instance=ExtResource("5_3jubf")]
+[node name="cube" parent="." instance=ExtResource("5_bvty6")]
 transform = Transform3D(0.999998, 0.0018593, -0.00103707, -0.00185927, 0.999998, 3.82096e-05, 0.00103714, -3.6283e-05, 0.999999, -6.05296, 0.372117, -0.0487497)
 
-[node name="cube3" parent="." instance=ExtResource("5_3jubf")]
-transform = Transform3D(0.999998, 0.0018593, -0.00103707, -0.00185927, 0.999998, 3.82096e-05, 0.00103714, -3.6283e-05, 0.999999, -9.7438, 0.372117, 7.1015)
+[node name="cube3" parent="." instance=ExtResource("5_bvty6")]
+transform = Transform3D(0.999998, 0.00185931, -0.00103707, -0.00185927, 0.999998, 3.82113e-05, 0.00103714, -3.6283e-05, 0.999999, -9.7438, 0.372117, 7.1015)
 
-[node name="key2" parent="." instance=ExtResource("11_jibqa")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.50275, 0.372117, -4.52964)
+[node name="key2" parent="." instance=ExtResource("11_tv7a3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.63601, 3.4885, -2.11246)
 
-[node name="key3" parent="." instance=ExtResource("11_jibqa")]
+[node name="key3" parent="." instance=ExtResource("11_tv7a3")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.761057, 0.372117, 10.7056)
 
-[node name="cube2" parent="." instance=ExtResource("5_3jubf")]
+[node name="cube2" parent="." instance=ExtResource("5_bvty6")]
 transform = Transform3D(0.999998, 0.0018593, -0.00103707, -0.00185927, 0.999998, 3.82096e-05, 0.00103714, -3.6283e-05, 0.999999, -7.11714, 0.372116, -4.45093)

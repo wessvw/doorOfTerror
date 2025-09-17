@@ -15,6 +15,7 @@ public partial class keyItem : StaticBody3D, IUsable
 		playerscript = GetTree().Root.FindChild("Player", true, false) as PlayerMovement;
 		mesh = GetChild<MeshInstance3D>(0);
 		ebutton = GetChild<Sprite3D>(1);
+		// CHANGE SPAWNER.ITEM HERE FOR EVERY NEW ITEM
 		thisitem = spawner.key;
 		GD.Print(thisitem);
 	}
@@ -67,17 +68,23 @@ public partial class keyItem : StaticBody3D, IUsable
 
 	public void Use()
 	{
-		if (thisitem.count > 1)
+		if (playerscript.isPlayerNearDoor())
 		{
-			thisitem.count = thisitem.count - 1;
+			if (thisitem.count > 1)
+			{
+				thisitem.count = thisitem.count - 1;
+			}
+			else if (thisitem.count == 1)
+			{
+				playerscript.aplayer.Backpack.Get(thisitem.IName);
+				thisitem.count = 0;
+				thisitem.slot = -1;
+			}
+			GD.Print("player opened door");
 		}
-		else if (thisitem.count == 1)
+		else
 		{
-			playerscript.aplayer.Backpack.Get(thisitem.IName);
-			thisitem.count = 0;
-			thisitem.slot = -1;
+			GD.Print("player not close enough");
 		}
-		playerscript.aplayer.Sanity = playerscript.aplayer.Sanity + 100;
-		GD.Print(playerscript.aplayer.Sanity);
 	}
 }

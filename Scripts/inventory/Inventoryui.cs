@@ -131,10 +131,12 @@ public partial class Inventoryui : Control
 	}
 	public void ChangeToInventorySlot(int hotbarslotNumber, int changeToSlotNumber)
 	{
-		Item item = hotBarSlots[hotbarslotNumber - 101].itemInSlot;
-		item.slot = changeToSlotNumber - 1;
-		needToRemoveTextureSlot = hotbarslotNumber;
-		// GD.Print(hotbarslotNumber);
+		if (hotBarSlots[hotbarslotNumber - 101].itemInSlot != null)
+		{
+			Item item = hotBarSlots[hotbarslotNumber - 101].itemInSlot;
+			item.slot = changeToSlotNumber - 1;
+			needToRemoveTextureSlot = hotbarslotNumber;
+		}
 	}
 
 	public void useSelectedItem()

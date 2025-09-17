@@ -16,9 +16,9 @@ public partial class ItemSpawner : Node
 		var textures = LoadPngTextures("res://2D assets/itemTextures/");
 		var scenes = LoadScenes("res://Scenes/Items/");
 		//cube item
-		cube = new Item("cube", "just a regular cube", 1,scenes["cube"],textures["cube"]);
+		cube = new Item("cube", "just a regular cube", 1, scenes["cube"], textures["cube"]);
 		//key item
-		key = new Item("key", "a key to open something", 1,scenes["key"], textures["key"]);
+		key = new Item("key", "a key to open something", 1, scenes["key"], textures["key"]);
 		//document item
 
 
