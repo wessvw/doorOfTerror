@@ -1,38 +1,38 @@
-using Godot;
-using System;
+// using Godot;
+// using System;
 
-public partial class SlotButton : Button
-{
-	private int slotNumber;
-	private Invslot slot;
-	public override void _Ready()
-	{
-		slotNumber = (int)GetMeta("type");
-		slot = GetParent().GetParent<Invslot>();
-	}
+// public partial class SlotButton : Button
+// {
+// 	private int slotNumber;
+// 	private Invslot slot;
+// 	public override void _Ready()
+// 	{
+// 		slotNumber = (int)GetMeta("type");
+// 		slot = GetParent().GetParent<Invslot>();
+// 	}
 
-	// Called every frame. 'delta' is the elapsed time since the previous frame.
-	public override void _Process(double delta)
-	{
-	}
+// 	// Called every frame. 'delta' is the elapsed time since the previous frame.
+// 	public override void _Process(double delta)
+// 	{
+// 	}
 
-	public override void _GuiInput(InputEvent @event)
-	{
-		if (@event is InputEventMouseButton mouseEvent)
-		{
-			if (mouseEvent.ButtonIndex == MouseButton.Left && mouseEvent.Pressed)
-			{
-				if (slot.itemInSlot != null)
-				{
-					slot.toHotBarChange(slotNumber);
-				}
-				if (slot.itemInSlot == null)
-				{
-					slot.backToInvChange(slotNumber);
-				}
-			}
-		}
-	}
+// 	public override void _GuiInput(InputEvent @event)
+// 	{
+// 		if (@event is InputEventMouseButton mouseEvent)
+// 		{
+// 			if (mouseEvent.ButtonIndex == MouseButton.Left && mouseEvent.Pressed)
+// 			{
+// 				if (slot.itemInSlot != null)
+// 				{
+// 					slot.toHotBarChange(slotNumber);
+// 				}
+// 				if (slot.itemInSlot == null)
+// 				{
+// 					slot.backToInvChange(slotNumber);
+// 				}
+// 			}
+// 		}
+// 	}
 
 
-}
+// }

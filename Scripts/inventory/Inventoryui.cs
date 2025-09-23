@@ -64,10 +64,11 @@ public partial class Inventoryui : Control
 					hslot.UpdateCount(item);
 					if (slots[needToRemoveTextureSlot - 1] is Invslot slot)
 					{
-						// GD.Print(needToRemoveTextureSlot - 1);
+						GD.Print(needToRemoveTextureSlot - 1);
 						slot.UpdateTexture(null);
 						slot.UpdateCount(null);
 						slot.itemInSlot = null;
+						// slot.itemInSlot.slot = -1;
 					}
 				}
 			}
@@ -89,6 +90,7 @@ public partial class Inventoryui : Control
 						hslot.UpdateCount(null);
 						hslot.itemInSlot = null;
 						needToRemoveTextureSlot = -1;
+						
 					}
 				}
 

@@ -1,7 +1,7 @@
 using Godot;
 using System;
 using System.Linq;
-public partial class Invslot : Panel
+public partial class Invslot : Button
 {
 	private Sprite2D itemVisual;
 	private RichTextLabel textLabel;
@@ -20,34 +20,37 @@ public partial class Invslot : Panel
 		buttons = GetChild<Panel>(3);
 		number = (int)GetMeta("type");
 
+		this.Pressed += () => buttonPressed();
+		this.ButtonUp += () => buttonUp();
+		this.ButtonDown += () => buttonDown();
 	}
 
 
 	public override void _GuiInput(InputEvent @event)
 	{
-		if (@event is InputEventMouseButton mouseEvent)
-		{
-			if (mouseEvent.ButtonIndex == MouseButton.Right && mouseEvent.Pressed)
-			{
-				if (this.buttons.Visible == false)
-				{
-					buttons.Visible = true;
-					ui.ignoreSlots(number - 1);
-				}
-				else
-				{
-					buttons.Visible = false;
-					ui.ignoreSlots(number - 1);
-				}
-			}
-		}
+
+	}
+
+	private void buttonPressed()
+	{
+		GD.Print("pressed");
+	}
+
+	private void buttonUp()
+	{
+		GD.Print("up");
+	}
+
+	private void buttonDown()
+	{
+		GD.Print("down");
 	}
 
 	public void UpdateTexture(Item item)
 	{
 		if (item == null)
 		{
-			itemVisual.Visible = false;
+			itemVisual = null;
 		}
 		else
 		{
@@ -56,10 +59,11 @@ public partial class Invslot : Panel
 			itemInSlot = item;
 		}
 	}
-	public void RemoveTexture()
-	{
-		itemVisual = null;
-	}
+	// public void RemoveTexture()
+	// {
+	// 	itemVisual = null;
+	// }
+
 	public void UpdateCount(Item item)
 	{
 		if (item != null)
@@ -72,19 +76,19 @@ public partial class Invslot : Panel
 		}
 	}
 
-	public void toHotBarChange(int hotbarslotNumber)
-	{
-		ui.ChangeToHotbarSlot(hotbarslotNumber, number, itemInSlot);
-	}
+	// public void toHotBarChange(int hotbarslotNumber)
+	// {
+	// 	ui.ChangeToHotbarSlot(hotbarslotNumber, number, itemInSlot);
+	// }
 	
-	public void backToInvChange(int hotbarslotNumber)
-	{
-		if (itemInSlot == null)
-		{
-			ui.ChangeToInventorySlot(hotbarslotNumber, number);
-		}
+	// public void backToInvChange(int hotbarslotNumber)
+	// {
+	// 	if (itemInSlot == null)
+	// 	{
+	// 		ui.ChangeToInventorySlot(hotbarslotNumber, number);
+	// 	}
 
-	}
+	// }
 	
 
 }

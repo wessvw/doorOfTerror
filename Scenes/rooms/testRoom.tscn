@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://dx8yl1u7bg1w5"]
+[gd_scene load_steps=21 format=3 uid="uid://dx8yl1u7bg1w5"]
 
 [ext_resource type="PackedScene" uid="uid://bkhssu84hb8n0" path="res://Objects/player/player.tscn" id="1_tdymw"]
 [ext_resource type="Script" uid="uid://e55t13mjo3pm" path="res://Scripts/DoorHandler.cs" id="2_3aufo"]
@@ -10,7 +10,9 @@
 [ext_resource type="PackedScene" uid="uid://ch1s0k7ki0mo1" path="res://GUI/inventoryui.tscn" id="8_as74h"]
 [ext_resource type="Script" uid="uid://dunautlw3ujv4" path="res://Scripts/inventory/Hotbar.cs" id="9_pmq0v"]
 [ext_resource type="PackedScene" uid="uid://c5jgjpeq16uvb" path="res://GUI/hotBarSlot.tscn" id="10_e7lwt"]
+[ext_resource type="Texture2D" uid="uid://bp7vo7mn4uny0" path="res://2D assets/itemTextures/key.png" id="11_3aufo"]
 [ext_resource type="PackedScene" uid="uid://bm030xygdi1ig" path="res://Scenes/Items/key.tscn" id="11_tv7a3"]
+[ext_resource type="Script" uid="uid://kdbt038b5f04" path="res://Scripts/inventory/ItemFollowMouse.cs" id="12_tnx08"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_upwws"]
 
@@ -102,7 +104,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.17651, 0.5, -8.34157)
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="InventoryUI" parent="CanvasLayer" instance=ExtResource("8_as74h")]
-visible = false
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
@@ -119,9 +120,9 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -20.0
+offset_left = -19.0
 offset_top = -40.0
-offset_right = 20.0
+offset_right = 21.0
 grow_horizontal = 2
 grow_vertical = 0
 script = ExtResource("9_pmq0v")
@@ -171,8 +172,14 @@ grow_horizontal = 2
 grow_vertical = 0
 metadata/type = 103
 
+[node name="invItemVisual" type="Sprite2D" parent="CanvasLayer"]
+position = Vector2(266, 106)
+scale = Vector2(2.92393, 2.93219)
+texture = ExtResource("11_3aufo")
+script = ExtResource("12_tnx08")
+
 [node name="key" parent="." instance=ExtResource("11_tv7a3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.15373, 2.59293, 12.047)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.20873, 0.461073, 10.9675)
 
 [node name="cube" parent="." instance=ExtResource("5_bvty6")]
 transform = Transform3D(0.999998, 0.0018593, -0.00103707, -0.00185927, 0.999998, 3.82096e-05, 0.00103714, -3.6283e-05, 0.999999, -6.05296, 0.372117, -0.0487497)
@@ -181,10 +188,10 @@ transform = Transform3D(0.999998, 0.0018593, -0.00103707, -0.00185927, 0.999998,
 transform = Transform3D(0.999998, 0.00185931, -0.00103707, -0.00185927, 0.999998, 3.82113e-05, 0.00103714, -3.6283e-05, 0.999999, -9.7438, 0.372117, 7.1015)
 
 [node name="key2" parent="." instance=ExtResource("11_tv7a3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.63601, 3.4885, -2.11246)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.07553, 0.248944, -6.87708)
 
 [node name="key3" parent="." instance=ExtResource("11_tv7a3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.761057, 0.372117, 10.7056)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.9465, 0.244126, -1.83024)
 
 [node name="cube2" parent="." instance=ExtResource("5_bvty6")]
-transform = Transform3D(0.999998, 0.0018593, -0.00103707, -0.00185927, 0.999998, 3.82096e-05, 0.00103714, -3.6283e-05, 0.999999, -7.11714, 0.372116, -4.45093)
+transform = Transform3D(0.999998, 0.0018593, -0.00103707, -0.00185927, 0.999998, 3.82096e-05, 0.00103714, -3.6283e-05, 0.999999, -8.88036, 0.53679, -9.82627)

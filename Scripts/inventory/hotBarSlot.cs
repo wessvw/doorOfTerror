@@ -21,7 +21,7 @@ public partial class hotBarSlot : Panel
 	{
 		if (item == null)
 		{
-			itemVisual.Visible = false;
+			itemVisual = null;
 		}
 		else
 		{
