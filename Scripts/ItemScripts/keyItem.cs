@@ -17,33 +17,27 @@ public partial class keyItem : StaticBody3D, IUsable
 		ebutton = GetChild<Sprite3D>(1);
 		// CHANGE SPAWNER.ITEM HERE FOR EVERY NEW ITEM
 		thisitem = spawner.key;
-		GD.Print(thisitem);
 	}
 
 	public override void _Process(double delta)
 	{
-		// GD.Print(spawner.cube.count);
+		// //GD.Print(spawner.cube.count);
 		if (NearPlayer())
 		{
 			ebutton.Visible = true;
 			mesh.MaterialOverlay = outlineMaterial;
 			if (Input.IsActionJustPressed("accept"))
 			{
-				if (thisitem.count > 0)
+				if (thisitem == null)
 				{
-					thisitem.count++;
-					QueueFree();
-
+					GD.Print(thisitem);
 				}
-				else
+				if (playerscript.aplayer.Backpack.Put(thisitem.IName, thisitem))
 				{
-					if (playerscript.aplayer.Backpack.Put(thisitem.IName, thisitem))
-					{
-						thisitem.count++;
-						QueueFree();
-					}
+					QueueFree();
 				}
 			}
+
 			ebutton.Rotation = playerscript.Rotation;
 
 		}

@@ -38,6 +38,11 @@ public class Inventory
 
 	public bool Put(string itemName, Item item)
 	{
+		if (contents.ContainsKey(itemName))
+		{
+			contents[itemName].count++;
+			return true;
+		}
 		contents.Add(itemName, item);
 		return true;
 	}

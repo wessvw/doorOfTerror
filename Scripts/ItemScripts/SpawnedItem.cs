@@ -20,28 +20,23 @@ public partial class SpawnedItem : StaticBody3D, IUsable
 
 	public override void _Process(double delta)
 	{
-		// GD.Print(spawner.cube.count);
+		// //GD.Print(spawner.cube.count);
 		if (NearPlayer())
 		{
 			ebutton.Visible = true;
 			mesh.MaterialOverlay = outlineMaterial;
 			if (Input.IsActionJustPressed("accept"))
 			{
-				if (thisitem.count > 0)
+				if (thisitem == null)
 				{
-					thisitem.count++;
-					QueueFree();
-
+					GD.Print(thisitem);
 				}
-				else
+				if (playerscript.aplayer.Backpack.Put(thisitem.IName, thisitem))
 				{
-					if (playerscript.aplayer.Backpack.Put(thisitem.IName, thisitem))
-					{
-						thisitem.count++;
-						QueueFree();
-					}
+					QueueFree();
 				}
 			}
+
 			ebutton.Rotation = playerscript.Rotation;
 
 		}
@@ -76,7 +71,10 @@ public partial class SpawnedItem : StaticBody3D, IUsable
 			thisitem.count = 0;
 			thisitem.slot = -1;
 		}
+
+		// this is where to put the code for what the item does after being used
 		playerscript.aplayer.Sanity = playerscript.aplayer.Sanity + 100;
-		GD.Print(playerscript.aplayer.Sanity);
+
 	}
+	
 }

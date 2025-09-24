@@ -97,7 +97,7 @@ public partial class PlayerMovement : CharacterBody3D
 			}
 			else
 			{
-				GD.Print("player is not close enough");
+				//GD.Print("player is not close enough");
 			}
 		}
 		if (Input.IsActionJustPressed("escape"))

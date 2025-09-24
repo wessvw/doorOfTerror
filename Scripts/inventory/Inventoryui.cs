@@ -50,7 +50,7 @@ public partial class Inventoryui : Control
 				Input.MouseMode = Input.MouseModeEnum.Captured;
 			}
 		}
-
+		updateInventory();
 
 	}
 
@@ -71,7 +71,7 @@ public partial class Inventoryui : Control
 					hslot.UpdateCount(item);
 					if (slots[needToRemoveTextureSlot - 1] is Invslot slot)
 					{
-						GD.Print(needToRemoveTextureSlot - 1);
+						//GD.Print(needToRemoveTextureSlot - 1);
 						slot.UpdateTexture(null);
 						slot.UpdateCount(null);
 						slot.itemInSlot = null;
@@ -89,10 +89,10 @@ public partial class Inventoryui : Control
 				slot.UpdateCount(item);
 				if (needToRemoveTextureSlot > 100)
 				{
-					// GD.Print(needToRemoveTextureSlot - 101);
+					// //GD.Print(needToRemoveTextureSlot - 101);
 					if (hotBarSlots[needToRemoveTextureSlot - 101] is hotBarSlot hslot)
 					{
-						// GD.Print(needToRemoveTextureSlot);
+						// //GD.Print(needToRemoveTextureSlot);
 						hslot.UpdateTexture(null);
 						hslot.UpdateCount(null);
 						hslot.itemInSlot = null;
@@ -142,7 +142,7 @@ public partial class Inventoryui : Control
 			Node instance = item.Scene.Instantiate();
 			if (instance is IUsable usable)
 			{
-				GD.Print(usable);
+				//GD.Print(usable);
 				usable.setUp(item, playerscript);
 				usable.Use();
 			}

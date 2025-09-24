@@ -43,13 +43,13 @@ public partial class ItemSpawner : Node
 
 	private Dictionary<string, Texture2D> LoadPngTextures(string path)
 	{
-		GD.Print($"Trying to open: {path}");
+		//GD.Print($"Trying to open: {path}");
 		var textures = new Dictionary<string, Texture2D>();
 
 		using DirAccess dir = DirAccess.Open(path);
 		if (dir == null)
 		{
-			GD.PrintErr($"Could not open directory: {path}");
+			//GD.PrintErr($"Could not open directory: {path}");
 			return textures;
 		}
 
@@ -67,7 +67,7 @@ public partial class ItemSpawner : Node
 			if (fileName.EndsWith(".png"))
 			{
 				string fullPath = $"{path}{fileName}";
-				GD.Print($"Loading: {fullPath}");
+				//GD.Print($"Loading: {fullPath}");
 				Texture2D texture = GD.Load<Texture2D>(fullPath);
 				if (texture != null)
 				{
@@ -76,7 +76,7 @@ public partial class ItemSpawner : Node
 				}
 				else
 				{
-					GD.PrintErr($"Failed to load texture at: {fullPath}");
+					//GD.PrintErr($"Failed to load texture at: {fullPath}");
 				}
 			}
 		}
@@ -94,7 +94,7 @@ public partial class ItemSpawner : Node
 		using DirAccess dir = DirAccess.Open(path);
 		if (dir == null)
 		{
-			GD.PrintErr($"Could not open directory: {path}");
+			//GD.PrintErr($"Could not open directory: {path}");
 			return scenes;
 		}
 

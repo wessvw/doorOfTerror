@@ -17,7 +17,7 @@ public partial class Invslot : Button
 
 	public override void _Ready()
 	{
-		// GD.Print(string.Format("[color=#000]", item.count));
+		// //GD.Print(string.Format("[color=#000]", item.count));
 		textLabel = GetNode<RichTextLabel>("itemCount");
 		itemVisual = GetChild(1).GetChild(0).GetNode<Sprite2D>("ItemContainer");
 		ui = GetParent().GetParent().GetParent<Inventoryui>();
@@ -36,6 +36,7 @@ public partial class Invslot : Button
 
 	private void buttonMouseEntered()
 	{
+		GD.Print("mous entered" + this.Name);
 		ui.slotToMoveTo = number;
 	}
 
