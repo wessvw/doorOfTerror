@@ -36,6 +36,7 @@ layout_mode = 2
 mouse_filter = 2
 
 [node name="ItemContainer" type="Sprite2D" parent="CenterContainer/Panel"]
+z_index = 1
 position = Vector2(-0.5, 1.5)
 scale = Vector2(2.8, 2.8)
 metadata/_edit_group_ = true

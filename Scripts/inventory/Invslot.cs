@@ -5,10 +5,14 @@ public partial class Invslot : Button
 {
 	private Sprite2D itemVisual;
 	private RichTextLabel textLabel;
-	private Panel buttons;
 	private Inventoryui ui;
 	private int number;
 	public Item itemInSlot;
+	private Vector2 oldSpritePosition;
+	private Vector2 oldTextLabelPosition;
+	
+	private bool activated;
+	private bool buttonDownActivated = false;
 
 
 	public override void _Ready()
@@ -17,12 +21,11 @@ public partial class Invslot : Button
 		textLabel = GetNode<RichTextLabel>("itemCount");
 		itemVisual = GetChild(1).GetChild(0).GetNode<Sprite2D>("ItemContainer");
 		ui = GetParent().GetParent().GetParent<Inventoryui>();
-		buttons = GetChild<Panel>(3);
 		number = (int)GetMeta("type");
 
-		this.Pressed += () => buttonPressed();
 		this.ButtonUp += () => buttonUp();
 		this.ButtonDown += () => buttonDown();
+		this.MouseEntered += () => buttonMouseEntered();
 	}
 
 
@@ -31,19 +34,39 @@ public partial class Invslot : Button
 
 	}
 
-	private void buttonPressed()
+	private void buttonMouseEntered()
 	{
-		GD.Print("pressed");
+		ui.slotToMoveTo = number;
 	}
+
 
 	private void buttonUp()
 	{
-		GD.Print("up");
+		if (itemInSlot != null)
+		{
+
+			itemInSlot.slot = ui.slotToMoveTo;
+			itemVisual.Texture = null;
+			textLabel.Text = "";
+			itemInSlot = null;
+			activated = false;
+		}
+		buttonDownActivated = false;
+		ui.updateInventory();
+		itemVisual.Position = oldSpritePosition;
+		textLabel.Position = oldTextLabelPosition;
 	}
 
 	private void buttonDown()
 	{
-		GD.Print("down");
+		oldSpritePosition = itemVisual.Position;
+		oldTextLabelPosition = textLabel.Position;
+		buttonDownActivated = true;
+		if (itemInSlot != null)
+		{
+			activated = true;
+			itemVisual.GlobalPosition = GetGlobalMousePosition();
+		}
 	}
 
 	public void UpdateTexture(Item item)
@@ -59,6 +82,7 @@ public partial class Invslot : Button
 			itemInSlot = item;
 		}
 	}
+
 	// public void RemoveTexture()
 	// {
 	// 	itemVisual = null;
@@ -80,7 +104,7 @@ public partial class Invslot : Button
 	// {
 	// 	ui.ChangeToHotbarSlot(hotbarslotNumber, number, itemInSlot);
 	// }
-	
+
 	// public void backToInvChange(int hotbarslotNumber)
 	// {
 	// 	if (itemInSlot == null)
@@ -89,6 +113,15 @@ public partial class Invslot : Button
 	// 	}
 
 	// }
-	
+
+	public override void _Input(InputEvent @event)
+	{
+		if (@event is InputEventMouseMotion && buttonDownActivated)
+		{
+			itemVisual.GlobalPosition = GetGlobalMousePosition();
+			textLabel.GlobalPosition = GetGlobalMousePosition();
+		}
+    }
+
 
 }

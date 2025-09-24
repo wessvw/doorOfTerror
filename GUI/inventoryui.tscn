@@ -43,84 +43,112 @@ columns = 7
 
 [node name="Button0" parent="NinePatchRect/GridContainer" instance=ExtResource("3_galt3")]
 layout_mode = 2
+metadata/type = 0
 
 [node name="Button1" parent="NinePatchRect/GridContainer" instance=ExtResource("3_galt3")]
 layout_mode = 2
+metadata/type = 1
 
 [node name="Button2" parent="NinePatchRect/GridContainer" instance=ExtResource("3_galt3")]
 layout_mode = 2
+metadata/type = 2
 
 [node name="Button3" parent="NinePatchRect/GridContainer" instance=ExtResource("3_galt3")]
 layout_mode = 2
+metadata/type = 3
 
 [node name="Button4" parent="NinePatchRect/GridContainer" instance=ExtResource("3_galt3")]
 layout_mode = 2
+metadata/type = 4
 
 [node name="Button5" parent="NinePatchRect/GridContainer" instance=ExtResource("3_galt3")]
 layout_mode = 2
+metadata/type = 5
 
 [node name="Button6" parent="NinePatchRect/GridContainer" instance=ExtResource("3_galt3")]
 layout_mode = 2
+metadata/type = 6
 
 [node name="Button7" parent="NinePatchRect/GridContainer" instance=ExtResource("3_galt3")]
 layout_mode = 2
+metadata/type = 7
 
 [node name="Button8" parent="NinePatchRect/GridContainer" instance=ExtResource("3_galt3")]
 layout_mode = 2
+metadata/type = 8
 
 [node name="Button9" parent="NinePatchRect/GridContainer" instance=ExtResource("3_galt3")]
 layout_mode = 2
+metadata/type = 9
 
 [node name="Button10" parent="NinePatchRect/GridContainer" instance=ExtResource("3_galt3")]
 layout_mode = 2
+metadata/type = 10
 
 [node name="Button11" parent="NinePatchRect/GridContainer" instance=ExtResource("3_galt3")]
 layout_mode = 2
+metadata/type = 11
 
 [node name="Button12" parent="NinePatchRect/GridContainer" instance=ExtResource("3_galt3")]
 layout_mode = 2
+metadata/type = 12
 
 [node name="Button13" parent="NinePatchRect/GridContainer" instance=ExtResource("3_galt3")]
 layout_mode = 2
+metadata/type = 13
 
 [node name="Button14" parent="NinePatchRect/GridContainer" instance=ExtResource("3_galt3")]
 layout_mode = 2
+metadata/type = 14
 
 [node name="Button15" parent="NinePatchRect/GridContainer" instance=ExtResource("3_galt3")]
 layout_mode = 2
+metadata/type = 15
 
 [node name="Button16" parent="NinePatchRect/GridContainer" instance=ExtResource("3_galt3")]
 layout_mode = 2
+metadata/type = 16
 
 [node name="Button17" parent="NinePatchRect/GridContainer" instance=ExtResource("3_galt3")]
 layout_mode = 2
+metadata/type = 17
 
 [node name="Button18" parent="NinePatchRect/GridContainer" instance=ExtResource("3_galt3")]
 layout_mode = 2
+metadata/type = 18
 
 [node name="Button19" parent="NinePatchRect/GridContainer" instance=ExtResource("3_galt3")]
 layout_mode = 2
+metadata/type = 19
 
 [node name="Button20" parent="NinePatchRect/GridContainer" instance=ExtResource("3_galt3")]
 layout_mode = 2
+metadata/type = 20
 
 [node name="Button21" parent="NinePatchRect/GridContainer" instance=ExtResource("3_galt3")]
 layout_mode = 2
+metadata/type = 21
 
 [node name="Button22" parent="NinePatchRect/GridContainer" instance=ExtResource("3_galt3")]
 layout_mode = 2
+metadata/type = 22
 
 [node name="Button23" parent="NinePatchRect/GridContainer" instance=ExtResource("3_galt3")]
 layout_mode = 2
+metadata/type = 23
 
 [node name="Button24" parent="NinePatchRect/GridContainer" instance=ExtResource("3_galt3")]
 layout_mode = 2
+metadata/type = 24
 
 [node name="Button25" parent="NinePatchRect/GridContainer" instance=ExtResource("3_galt3")]
 layout_mode = 2
+metadata/type = 25
 
 [node name="Button26" parent="NinePatchRect/GridContainer" instance=ExtResource("3_galt3")]
 layout_mode = 2
+metadata/type = 26
 
 [node name="Button27" parent="NinePatchRect/GridContainer" instance=ExtResource("3_galt3")]
 layout_mode = 2
+metadata/type = 27

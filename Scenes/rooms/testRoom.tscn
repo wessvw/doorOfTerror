@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://dx8yl1u7bg1w5"]
+[gd_scene load_steps=20 format=3 uid="uid://dx8yl1u7bg1w5"]
 
 [ext_resource type="PackedScene" uid="uid://bkhssu84hb8n0" path="res://Objects/player/player.tscn" id="1_tdymw"]
 [ext_resource type="Script" uid="uid://e55t13mjo3pm" path="res://Scripts/DoorHandler.cs" id="2_3aufo"]
@@ -10,7 +10,6 @@
 [ext_resource type="PackedScene" uid="uid://ch1s0k7ki0mo1" path="res://GUI/inventoryui.tscn" id="8_as74h"]
 [ext_resource type="Script" uid="uid://dunautlw3ujv4" path="res://Scripts/inventory/Hotbar.cs" id="9_pmq0v"]
 [ext_resource type="PackedScene" uid="uid://c5jgjpeq16uvb" path="res://GUI/hotBarSlot.tscn" id="10_e7lwt"]
-[ext_resource type="Texture2D" uid="uid://bp7vo7mn4uny0" path="res://2D assets/itemTextures/key.png" id="11_3aufo"]
 [ext_resource type="PackedScene" uid="uid://bm030xygdi1ig" path="res://Scenes/Items/key.tscn" id="11_tv7a3"]
 [ext_resource type="Script" uid="uid://kdbt038b5f04" path="res://Scripts/inventory/ItemFollowMouse.cs" id="12_tnx08"]
 
@@ -175,7 +174,6 @@ metadata/type = 103
 [node name="invItemVisual" type="Sprite2D" parent="CanvasLayer"]
 position = Vector2(266, 106)
 scale = Vector2(2.92393, 2.93219)
-texture = ExtResource("11_3aufo")
 script = ExtResource("12_tnx08")
 
 [node name="key" parent="." instance=ExtResource("11_tv7a3")]

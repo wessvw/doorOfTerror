@@ -12,6 +12,7 @@ public partial class Inventoryui : Control
 	public Hotbar hotbarNode;
 	private int hotBarNumber = 0;
 	private int needToRemoveTextureSlot;
+	public int slotToMoveTo;
 
 	public override void _Ready()
 	{
@@ -29,6 +30,7 @@ public partial class Inventoryui : Control
 				hotBarSlots.Add(slot);
 			}
 		}
+
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -49,6 +51,11 @@ public partial class Inventoryui : Control
 			}
 		}
 
+
+	}
+
+	public void updateInventory()
+	{
 		var keys = playerinv.Contents.Keys.ToList();
 		int limit = Math.Min(keys.Count, slots.Count);
 
@@ -95,34 +102,7 @@ public partial class Inventoryui : Control
 				}
 
 			}
-		}
-
-	}
-
-	public void ignoreSlots(int exception)
-	{
-		// GD.Print(exception);
-		for (int i = 0; i < slots.Count; i++)
-		{
-			if (slots[i] is Invslot slot)
-			{
-				if (slot.MouseFilter == Control.MouseFilterEnum.Ignore)
-				{
-					slot.MouseFilter = Control.MouseFilterEnum.Stop;
-				}
-				else
-				{
-					if (i == exception)
-					{
-						slot.MouseFilter = Control.MouseFilterEnum.Stop;
-					}
-					else
-					{
-						slot.MouseFilter = Control.MouseFilterEnum.Ignore;
-					}
-				}
-			}
-		}
+		}	
 	}
 
 	public void ChangeToHotbarSlot(int hotbarslotNumber, int removeSlotNumber, Item item)
