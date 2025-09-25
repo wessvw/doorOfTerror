@@ -20,16 +20,20 @@ public partial class Inventoryui : Control
 		playerscript = GetTree().Root.FindChild("Player", true, false) as PlayerMovement;
 		playerinv = playerscript.aplayer.Backpack;
 		hotbarNode = GetParent().GetNode<Hotbar>("Hotbar");
+		// GD.Print(hotbarNode.GetChildren());
 		var children = hotbarNode.GetChildren();
 		hotBarSlots = new Godot.Collections.Array<hotBarSlot>();
 
 		foreach (Node child in children)
 		{
+			// GD.Print(child);
 			if (child is hotBarSlot slot)
 			{
+
 				hotBarSlots.Add(slot);
 			}
 		}
+		GD.Print(hotBarSlots[2]);
 
 	}
 
@@ -63,20 +67,13 @@ public partial class Inventoryui : Control
 		{
 			string key = keys[i];
 			Item item = playerinv.Contents[key];
+			// GD.Print(item.slot);
 			if (item.slot > 100)
 			{
 				if (hotBarSlots[item.slot - 101] is hotBarSlot hslot)
 				{
 					hslot.UpdateTexture(item);
 					hslot.UpdateCount(item);
-					if (slots[needToRemoveTextureSlot - 1] is Invslot slot)
-					{
-						//GD.Print(needToRemoveTextureSlot - 1);
-						slot.UpdateTexture(null);
-						slot.UpdateCount(null);
-						slot.itemInSlot = null;
-						// slot.itemInSlot.slot = -1;
-					}
 				}
 			}
 			else if (item.slot == -1)
@@ -87,39 +84,26 @@ public partial class Inventoryui : Control
 			{
 				slot.UpdateTexture(item);
 				slot.UpdateCount(item);
-				if (needToRemoveTextureSlot > 100)
-				{
-					// //GD.Print(needToRemoveTextureSlot - 101);
-					if (hotBarSlots[needToRemoveTextureSlot - 101] is hotBarSlot hslot)
-					{
-						// //GD.Print(needToRemoveTextureSlot);
-						hslot.UpdateTexture(null);
-						hslot.UpdateCount(null);
-						hslot.itemInSlot = null;
-						needToRemoveTextureSlot = -1;
-						
-					}
-				}
 
 			}
 		}	
 	}
 
-	public void ChangeToHotbarSlot(int hotbarslotNumber, int removeSlotNumber, Item item)
-	{
-		hotBarNumber = hotbarslotNumber;
-		needToRemoveTextureSlot = removeSlotNumber;
-		item.slot = hotbarslotNumber;
-	}
-	public void ChangeToInventorySlot(int hotbarslotNumber, int changeToSlotNumber)
-	{
-		if (hotBarSlots[hotbarslotNumber - 101].itemInSlot != null)
-		{
-			Item item = hotBarSlots[hotbarslotNumber - 101].itemInSlot;
-			item.slot = changeToSlotNumber - 1;
-			needToRemoveTextureSlot = hotbarslotNumber;
-		}
-	}
+	// public void ChangeToHotbarSlot(int hotbarslotNumber, int removeSlotNumber, Item item)
+	// {
+	// 	hotBarNumber = hotbarslotNumber;
+	// 	needToRemoveTextureSlot = removeSlotNumber;
+	// 	item.slot = hotbarslotNumber;
+	// }
+	// public void ChangeToInventorySlot(int hotbarslotNumber, int changeToSlotNumber)
+	// {
+	// 	if (hotBarSlots[hotbarslotNumber - 101].itemInSlot != null)
+	// 	{
+	// 		Item item = hotBarSlots[hotbarslotNumber - 101].itemInSlot;
+	// 		item.slot = changeToSlotNumber - 1;
+	// 		needToRemoveTextureSlot = hotbarslotNumber;
+	// 	}
+	// }
 
 	public void useSelectedItem()
 	{

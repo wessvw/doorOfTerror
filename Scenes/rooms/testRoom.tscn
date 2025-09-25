@@ -9,7 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://bndrqlef183vx" path="res://2D assets/itemTextures/cube.png" id="7_xvo1u"]
 [ext_resource type="PackedScene" uid="uid://ch1s0k7ki0mo1" path="res://GUI/inventoryui.tscn" id="8_as74h"]
 [ext_resource type="Script" uid="uid://dunautlw3ujv4" path="res://Scripts/inventory/Hotbar.cs" id="9_pmq0v"]
-[ext_resource type="PackedScene" uid="uid://c5jgjpeq16uvb" path="res://GUI/hotBarSlot.tscn" id="10_e7lwt"]
+[ext_resource type="PackedScene" uid="uid://cbnglbwyk40vf" path="res://GUI/hotbarSlotButton.tscn" id="9_tdymw"]
 [ext_resource type="PackedScene" uid="uid://bm030xygdi1ig" path="res://Scenes/Items/key.tscn" id="11_tv7a3"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_upwws"]
@@ -117,27 +117,28 @@ grow_horizontal = 2
 grow_vertical = 0
 script = ExtResource("9_pmq0v")
 
-[node name="HotBarSlot" parent="CanvasLayer/Hotbar" instance=ExtResource("10_e7lwt")]
+[node name="Button" parent="CanvasLayer/Hotbar" instance=ExtResource("9_tdymw")]
 layout_mode = 0
-offset_left = -119.0
-offset_top = 38.0
-offset_right = -119.0
-offset_bottom = 38.0
+offset_left = -157.0
+offset_top = -63.0
+offset_right = -57.0
+offset_bottom = 37.0
+metadata/type = 101
 
-[node name="HotBarSlot2" parent="CanvasLayer/Hotbar" instance=ExtResource("10_e7lwt")]
+[node name="Button2" parent="CanvasLayer/Hotbar" instance=ExtResource("9_tdymw")]
 layout_mode = 0
-offset_left = 1.0
-offset_top = 39.0
-offset_right = 1.0
-offset_bottom = 39.0
+offset_left = -28.0
+offset_top = -63.0
+offset_right = 72.0
+offset_bottom = 37.0
 metadata/type = 102
 
-[node name="HotBarSlot3" parent="CanvasLayer/Hotbar" instance=ExtResource("10_e7lwt")]
+[node name="Button3" parent="CanvasLayer/Hotbar" instance=ExtResource("9_tdymw")]
 layout_mode = 0
-offset_left = 120.0
-offset_top = 38.0
-offset_right = 120.0
-offset_bottom = 38.0
+offset_left = 99.0
+offset_top = -63.0
+offset_right = 199.0
+offset_bottom = 37.0
 metadata/type = 103
 
 [node name="key" parent="." instance=ExtResource("11_tv7a3")]
