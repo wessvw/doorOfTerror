@@ -43,6 +43,8 @@ public class Inventory
 			contents[itemName].count++;
 			return true;
 		}
+
+		item.count = 1;
 		contents.Add(itemName, item);
 		return true;
 	}

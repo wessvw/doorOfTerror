@@ -9,7 +9,6 @@ public partial class Hotbar : Control
 	public override void _Ready()
 	{
 		ui = GetParent().GetNode("InventoryUI") as Inventoryui;
-		GD.Print(ui);
 		ChangeSelectedHotbarSlot();
 	}
 

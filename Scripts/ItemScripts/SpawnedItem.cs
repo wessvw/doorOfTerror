@@ -71,6 +71,7 @@ public partial class SpawnedItem : StaticBody3D, IUsable
 			thisitem.count = 0;
 			thisitem.slot = -1;
 		}
+		GD.Print(thisitem.count);
 
 		// this is where to put the code for what the item does after being used
 		playerscript.aplayer.Sanity = playerscript.aplayer.Sanity + 100;

@@ -3,7 +3,7 @@ using System;
 
 public partial class hotBarSlot : Button
 {
-	private Sprite2D itemVisual;
+	public Sprite2D itemVisual;
 	public Sprite2D selectedSprite;
 	private RichTextLabel textLabel;
 	public Item itemInSlot;
@@ -68,9 +68,10 @@ public partial class hotBarSlot : Button
 
 	public void UpdateTexture(Item item)
 	{
+
 		if (item == null)
 		{
-			itemVisual = null;
+			itemVisual.Texture = null;
 		}
 		else
 		{
@@ -88,6 +89,15 @@ public partial class hotBarSlot : Button
 		else
 		{
 			textLabel.Text = "";
+		}
+	}
+
+	public override void _Input(InputEvent @event)
+	{
+		if (@event is InputEventMouseMotion && buttonDownActivated)
+		{
+			itemVisual.GlobalPosition = GetGlobalMousePosition();
+			textLabel.GlobalPosition = GetGlobalMousePosition();
 		}
 	}
 }

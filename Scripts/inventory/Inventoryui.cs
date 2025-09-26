@@ -2,6 +2,7 @@ using Godot;
 using System;
 using System.Linq;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 
 public partial class Inventoryui : Control
 {
@@ -62,7 +63,7 @@ public partial class Inventoryui : Control
 	{
 		var keys = playerinv.Contents.Keys.ToList();
 		int limit = Math.Min(keys.Count, slots.Count);
-
+		
 		for (int i = 0; i < limit; i++)
 		{
 			string key = keys[i];
@@ -78,7 +79,15 @@ public partial class Inventoryui : Control
 			}
 			else if (item.slot == -1)
 			{
-				item.slot = i;
+				List<int> availableSlots = new List<int>();
+				foreach (Invslot slot in slots)
+				{
+					if (slot.itemInSlot == null)
+					{
+						availableSlots.Add(slot.number);
+					}
+				}
+				item.slot = availableSlots[0];
 			}
 			else if (slots[item.slot] is Invslot slot)
 			{
@@ -86,7 +95,7 @@ public partial class Inventoryui : Control
 				slot.UpdateCount(item);
 
 			}
-		}	
+		}
 	}
 
 	// public void ChangeToHotbarSlot(int hotbarslotNumber, int removeSlotNumber, Item item)

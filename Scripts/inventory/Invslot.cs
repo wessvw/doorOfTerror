@@ -6,7 +6,7 @@ public partial class Invslot : Button
 	private Sprite2D itemVisual;
 	private RichTextLabel textLabel;
 	private Inventoryui ui;
-	private int number;
+	public int number;
 	public Item itemInSlot;
 	private Vector2 oldSpritePosition;
 	private Vector2 oldTextLabelPosition;
