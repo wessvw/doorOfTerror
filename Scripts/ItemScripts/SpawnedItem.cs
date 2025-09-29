@@ -18,7 +18,7 @@ public partial class SpawnedItem : StaticBody3D, IUsable
 		thisitem = spawner.cube;
 	}
 
-	public override void _Process(double delta)
+	public override void _PhysicsProcess(double delta)
 	{
 		// //GD.Print(spawner.cube.count);
 		if (NearPlayer())
@@ -45,6 +45,10 @@ public partial class SpawnedItem : StaticBody3D, IUsable
 			ebutton.Visible = false;
 			mesh.MaterialOverlay = null;
 		}
+
+	}
+	public override void _Process(double delta)
+	{
 	}
 
 	public bool NearPlayer()

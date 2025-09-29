@@ -10,17 +10,28 @@ public partial class ItemSpawner : Node
 	public Item key;
 	// item textures
 	[Export] Texture2D cubeTexture;
+	Dictionary<string, Texture2D> textures;
+	Dictionary<string, PackedScene> scenes;
 	public override void _Ready()
 	{
 		spawnpoints = GetChildren();
-		var textures = LoadPngTextures("res://2D assets/itemTextures/");
-		var scenes = LoadScenes("res://Scenes/Items/");
-		//cube item
-		cube = new Item("cube", "just a regular cube", 1, scenes["cube"], textures["cube"]);
-		//key item
-		key = new Item("key", "a key to open something", 1, scenes["key"], textures["key"]);
-		//document item
+		// LoadPngTextures("res://2D assets/itemTextures/");
+		// LoadScenes("res://Scenes/Items/");
+		// foreach (var key in scenes.Keys)
+		// {
+		// 	GD.Print("Loaded scene: " + key);
+		// }
+		// foreach (var key in textures.Keys)
+		// {
+		// 	GD.Print("Loaded texture: " + key);
+		// }
 
+		GD.Print("aaa");
+		//cube item
+		cube = new Item("cube", "just a regular cube", 1);
+		//key item
+		key = new Item("key", "a key to open something", 1);
+		//document item
 
 		// SpawnItems();
 	}
@@ -41,89 +52,89 @@ public partial class ItemSpawner : Node
 		}
 	}
 
-	private Dictionary<string, Texture2D> LoadPngTextures(string path)
-	{
-		//GD.Print($"Trying to open: {path}");
-		var textures = new Dictionary<string, Texture2D>();
+	// private Dictionary<string, Texture2D> LoadPngTextures(string path)
+	// {
+	// 	GD.Print($"Trying to open: {path}");
+	// 	textures = new Dictionary<string, Texture2D>();
 
-		using DirAccess dir = DirAccess.Open(path);
-		if (dir == null)
-		{
-			//GD.PrintErr($"Could not open directory: {path}");
-			return textures;
-		}
+	// 	using DirAccess dir = DirAccess.Open(path);
+	// 	if (dir == null)
+	// 	{
+	// 		GD.PrintErr($"Could not open directory: {path}");
+	// 		return textures;
+	// 	}
 
-		dir.ListDirBegin();
+	// 	dir.ListDirBegin();
 
-		while (true)
-		{
-			string fileName = dir.GetNext();
-			if (fileName == "")
-				break;
+	// 	while (true)
+	// 	{
+	// 		string fileName = dir.GetNext();
+	// 		if (fileName == "")
+	// 			break;
 
-			if (dir.CurrentIsDir())
-				continue;
+	// 		if (dir.CurrentIsDir())
+	// 			continue;
 
-			if (fileName.EndsWith(".png"))
-			{
-				string fullPath = $"{path}{fileName}";
-				//GD.Print($"Loading: {fullPath}");
-				Texture2D texture = GD.Load<Texture2D>(fullPath);
-				if (texture != null)
-				{
-					string key = fileName.GetBaseName();
-					textures[key] = texture;
-				}
-				else
-				{
-					//GD.PrintErr($"Failed to load texture at: {fullPath}");
-				}
-			}
-		}
+	// 		if (fileName.EndsWith(".png"))
+	// 		{
+	// 			string fullPath = $"{path}{fileName}";
+	// 			GD.Print($"Loading: {fullPath}");
+	// 			Texture2D texture = GD.Load<Texture2D>(fullPath);
+	// 			if (texture != null)
+	// 			{
+	// 				string key = fileName.GetBaseName();
+	// 				textures[key] = texture;
+	// 			}
+	// 			else
+	// 			{
+	// 				GD.PrintErr($"Failed to load texture at: {fullPath}");
+	// 			}
+	// 		}
+	// 	}
 
-		dir.ListDirEnd();
+	// 	dir.ListDirEnd();
 
-		return textures;
-	}
+	// 	return textures;
+	// }
 
 
-	private Dictionary<string, PackedScene> LoadScenes(string path)
-	{
-		var scenes = new Dictionary<string, PackedScene>();
+	// private Dictionary<string, PackedScene> LoadScenes(string path)
+	// {
+	// 	scenes = new Dictionary<string, PackedScene>();
 
-		using DirAccess dir = DirAccess.Open(path);
-		if (dir == null)
-		{
-			//GD.PrintErr($"Could not open directory: {path}");
-			return scenes;
-		}
+	// 	using DirAccess dir = DirAccess.Open(path);
+	// 	if (dir == null)
+	// 	{
+	// 		//GD.PrintErr($"Could not open directory: {path}");
+	// 		return scenes;
+	// 	}
 
-		dir.ListDirBegin();
+	// 	dir.ListDirBegin();
 
-		while (true)
-		{
-			string fileName = dir.GetNext();
-			if (fileName == "")
-				break;
+	// 	while (true)
+	// 	{
+	// 		string fileName = dir.GetNext();
+	// 		if (fileName == "")
+	// 			break;
 
-			if (dir.CurrentIsDir())
-				continue; // skip folders
+	// 		if (dir.CurrentIsDir())
+	// 			continue; // skip folders
 
-			if (fileName.EndsWith(".tscn"))
-			{
-				string fullPath = $"{path}{fileName}";
-				PackedScene scene = GD.Load<PackedScene>(fullPath);
-				if (scene != null)
-				{
-					// Remove extension for key
-					string key = fileName.GetBaseName();
-					scenes[key] = scene;
-				}
-			}
-		}
+	// 		if (fileName.EndsWith(".tscn"))
+	// 		{
+	// 			string fullPath = $"{path}{fileName}";
+	// 			PackedScene scene = GD.Load<PackedScene>(fullPath);
+	// 			if (scene != null)
+	// 			{
+	// 				// Remove extension for key
+	// 				string key = fileName.GetBaseName();
+	// 				scenes[key] = scene;
+	// 			}
+	// 		}
+	// 	}
 
-		dir.ListDirEnd();
+	// 	dir.ListDirEnd();
 
-		return scenes;
-	}
+	// 	return scenes;
+	// }
 }
