@@ -39,7 +39,11 @@ public partial class hotBarSlot : Button
 	{
 		if (itemInSlot != null)
 		{
-
+			if (ui.isSlotFull(ui.slotToMoveTo))
+			{
+				ui.oldSlot = number;
+				ui.switchSlots();
+			}
 			itemInSlot.slot = ui.slotToMoveTo;
 			itemVisual.Texture = null;
 			textLabel.Text = "";

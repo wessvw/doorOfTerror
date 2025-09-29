@@ -14,6 +14,7 @@ public partial class Inventoryui : Control
 	private int hotBarNumber = 0;
 	private int needToRemoveTextureSlot;
 	public int slotToMoveTo;
+	public int oldSlot;
 
 	public override void _Ready()
 	{
@@ -63,7 +64,7 @@ public partial class Inventoryui : Control
 	{
 		var keys = playerinv.Contents.Keys.ToList();
 		int limit = Math.Min(keys.Count, slots.Count);
-		
+
 		for (int i = 0; i < limit; i++)
 		{
 			string key = keys[i];
@@ -98,21 +99,6 @@ public partial class Inventoryui : Control
 		}
 	}
 
-	// public void ChangeToHotbarSlot(int hotbarslotNumber, int removeSlotNumber, Item item)
-	// {
-	// 	hotBarNumber = hotbarslotNumber;
-	// 	needToRemoveTextureSlot = removeSlotNumber;
-	// 	item.slot = hotbarslotNumber;
-	// }
-	// public void ChangeToInventorySlot(int hotbarslotNumber, int changeToSlotNumber)
-	// {
-	// 	if (hotBarSlots[hotbarslotNumber - 101].itemInSlot != null)
-	// 	{
-	// 		Item item = hotBarSlots[hotbarslotNumber - 101].itemInSlot;
-	// 		item.slot = changeToSlotNumber - 1;
-	// 		needToRemoveTextureSlot = hotbarslotNumber;
-	// 	}
-	// }
 
 	public void useSelectedItem()
 	{
@@ -138,6 +124,76 @@ public partial class Inventoryui : Control
 				//GD.Print(usable);
 				usable.setUp(item, playerscript);
 				usable.Use();
+			}
+		}
+	}
+
+	public bool isSlotFull(int targetSlot)
+	{
+		if (targetSlot < 100)
+		{
+			if (slots[targetSlot] is Invslot slot)
+			{
+				if (slot.itemInSlot != null)
+				{
+					return true;
+				}
+			}
+		}
+		else
+		{
+			if (hotBarSlots[targetSlot - 101] is hotBarSlot slot)
+			{
+				if (slot.itemInSlot != null)
+				{
+					return true;
+				}
+			}
+		}
+
+		return false;
+	}
+
+	public void switchSlots()
+	{
+		if (slotToMoveTo < 100 && oldSlot < 100)
+		{
+			// Switch from inventory slot to inventory slot
+			if (slots[slotToMoveTo] is Invslot newSlot && slots[oldSlot] is Invslot oldSlotToMoveTo)
+			{
+
+				oldSlotToMoveTo.itemInSlot.slot = slotToMoveTo;
+				newSlot.itemInSlot.slot = oldSlot;
+			}
+		}
+		else if (slotToMoveTo > 100 && oldSlot < 100)
+		{
+			// Switch from hotbar slot to inventory slot
+			if (hotBarSlots[slotToMoveTo - 101] is hotBarSlot newHSlot && slots[oldSlot] is Invslot oldISlotToMoveTo)
+			{
+
+				oldISlotToMoveTo.itemInSlot.slot = slotToMoveTo;
+				newHSlot.itemInSlot.slot = oldSlot;
+			}
+		}
+		else if (slotToMoveTo < 100 && oldSlot > 100)
+		{
+			// Switch from inventory slot to hotbar slot
+			if (slots[slotToMoveTo] is Invslot newISlot && hotBarSlots[oldSlot - 101] is hotBarSlot oldHSlotToMoveTo)
+			{
+
+				oldHSlotToMoveTo.itemInSlot.slot = slotToMoveTo;
+				newISlot.itemInSlot.slot = oldSlot;
+			}
+		}
+		else if (slotToMoveTo > 100 && oldSlot > 100)
+		{
+			// Switch from hotbar slot to hotbar slot
+			if (hotBarSlots[slotToMoveTo - 101] is hotBarSlot newHSlot && hotBarSlots[oldSlot - 101] is hotBarSlot oldHSlotToMoveTo)
+			{
+
+				oldHSlotToMoveTo.itemInSlot.slot = slotToMoveTo;
+				newHSlot.itemInSlot.slot = oldSlot;
 			}
 		}
 	}
